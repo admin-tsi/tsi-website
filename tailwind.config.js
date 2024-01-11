@@ -11,14 +11,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#F2DD66',
-        secondary: '#E50E2D',
+        primary: '#0B2D36',
+        secondary: '#E9C168',
         accent: '#EADA9C',
         accent2: '#F2EFE6',
         neutral: '#1B1F20',
       },
       fontFamily: {
-        sans: ['var(--saira-font)'],
+        clash: ['var(--clash-display-font)'],
+        cinzel: ['var(--cinzel-font)'],
+      },
+      fontSize: {
+        xxs: '.65rem',
+        md: '1rem',
       },
     },
   },
