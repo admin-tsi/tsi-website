@@ -111,8 +111,8 @@ video {
 }
 
 .scroll-reveal p span {
-  animation-range-start: cover 45vh;
-  animation-range-end: cover 80vh;
+  animation-range-start: cover 60vh;
+  animation-range-end: cover 100vh;
 }
 
 @keyframes scroll-reveal {

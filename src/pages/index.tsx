@@ -1,10 +1,24 @@
 import { Logo, MobileLogo, Star } from '@/utils/svgs';
-import { cubicBezier, motion, useScroll, useTransform } from 'framer-motion';
+import {
+  cubicBezier,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import Footer from '@/components/Footer';
-import React, { useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import useMouse from '@react-hook/mouse-position';
-import Parallax from '../../public/img.png';
 import MultiLayerParallax from '@/components/MultiLayerParallax';
+import Header from '@/components/Header';
+import Services from '@/components/Services';
+import ResizeObserver from 'resize-observer-polyfill';
 function useConditionalMouse(ref: any) {
   return useMouse(ref, {
     enterDelay: 100,
@@ -63,6 +77,21 @@ export default function Index() {
         mass: 0.6,
       },
     },
+    talk: {
+      opacity: 1,
+      height: 30,
+      width: 90,
+      fontSize: '14px',
+      textTransform: 'uppercase',
+      textColor: 'white',
+      backgroundColor: '#E9C168',
+      x: mouseXPosition,
+      y: mouseYPosition,
+      transition: {
+        type: 'spring',
+        mass: 0.6,
+      },
+    },
     article: {
       opacity: 1,
       backgroundColor: '#fff',
@@ -97,8 +126,6 @@ export default function Index() {
     offset: ['start start', 'end start'],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '5O%']);
-
   const translateY = useTransform(scrollY, [200, 800], [0, 1050], {
     clamp: true,
     ease: cubicBezier(0.6, -0.05, 0.01, 0.99),
@@ -109,13 +136,26 @@ export default function Index() {
     ease: cubicBezier(0.6, -0.05, 0.01, 0.99),
   });
 
-  const scale = useTransform(scrollY, [200, 700], [1, 0.4], {
+  const scale = useTransform(scrollY, [200, 700], [1, 0.35], {
     clamp: true,
     ease: cubicBezier(0.6, -0.05, 0.01, 0.99),
   });
 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <div className="flex flex-col h-screen relative" ref={ref}>
+    <motion.div className="flex flex-col h-screen relative" ref={ref}>
       <motion.div
         // @ts-ignore
         variants={variants}
@@ -125,25 +165,8 @@ export default function Index() {
       >
         <span className="cursorText font-clash">{cursorText}</span>
       </motion.div>
-      <nav className="w-full z-20 top-0 left-0 fixed p-4 mix-blend-difference">
-        <div className="flex justify-between items-center">
-          <a href="#" aria-label="Home">
-            <span className="md:hidden">
-              <MobileLogo className="text-white" />
-            </span>
-            <span className="hidden md:block">
-              <Logo />
-            </span>
-          </a>
-          <button
-            type="button"
-            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none ring-4 ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5"
-          >
-            MENU
-          </button>
-        </div>
-      </nav>
 
+      <Header />
       <section
         className="relative flex items-center min-h-screen bg-cover bg-center font-clash "
         onMouseEnter={() => mouseEnter('play', 'play')}
@@ -155,17 +178,21 @@ export default function Index() {
           loop
           muted
           preload="meta"
-          style={{
-            scale,
-            translateY,
-            translateX,
-            transition: 'all 1s ease-in-out',
-            transformOrigin: 'right top',
-          }}
+          style={
+            isSmallScreen
+              ? {}
+              : {
+                  scale,
+                  translateY,
+                  translateX,
+                  transition: 'all 1s ease-in-out',
+                  transformOrigin: 'right top',
+                }
+          }
         >
           <source src="e.mp4" type="video/mp4" />
         </motion.video>
-        <div className="mix-blend-difference text-white font-bold text-center w-full left-1/2 -translate-x-1/2 absolute uppercase overflow-hidden bottom-0 mb-12 font-clash px-4">
+        <div className="mix-blend-difference text-white font-bold text-center w-full left-1/2 -translate-x-1/2 absolute uppercase overflow-hidden bottom-0 mb-12 font-clash">
           <div className="overflow-hidden">
             <motion.div
               initial={{ y: 100 }}
@@ -233,7 +260,7 @@ export default function Index() {
         </div>
       </section>
       <section className="px-6 md:px-16 py-10 md:py-26 font-clash my-12">
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full md:w-3/4">
           <div className="flex">
             <Star className="text-orange-700" />
             <h1 className="text-4xl text-primary font-bold uppercase pb-8">
@@ -241,7 +268,7 @@ export default function Index() {
             </h1>
           </div>
           <div className="scroll-reveal">
-            <p className="md:text-4xl lg:text-5xl mr-12 w-3/4">
+            <p className="text-3xl lg:text-5xl mr-12 w-full md:w-3/4">
               <span className="here">
                 Forem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                 vulputate libero et velit interdum, ac aliquet odio mattis.
@@ -253,11 +280,12 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <section className="px-6 md:px-36 py-10 md:py-26 bg-primary font-clash">
+      <Services />
+      <section className="px-6 md:px-36 py-10 md:py-26 font-clash">
         <div className="flex flex-col mb-2 lg:mt-20 lg:mb-12 px-4 lg:px-16">
           <div className="flex items-center mb-12 justify-between">
-            <h2 className="text-white text-3xl lg:text-6xl pr-3 ">Latest</h2>
-            <div className="border m-4 w-full bg-secondary hidden lg:block"></div>
+            <h2 className="text-primary text-3xl lg:text-6xl pr-3 ">Latest</h2>
+            <div className="border m-4 w-full bg-primary hidden lg:block"></div>
             <motion.button
               whileHover={{
                 scale: 1,
@@ -265,7 +293,7 @@ export default function Index() {
                 backgroundColor: '#E9C168',
               }}
               type="button"
-              className="text-white text-xxs md:text-md bg-gray-800 focus:outline-none ring-4 ring-gray-300 font-medium rounded-full px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
+              className="text-white text-xxs md:text-md bg-primary focus:outline-none font-medium rounded-full px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
             >
               VIEW ALL
             </motion.button>
@@ -380,9 +408,12 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <MultiLayerParallax />
+      <MultiLayerParallax
+        mouseEnter={() => mouseEnter('Lets talk', 'talk')}
+        mouseLeave={() => mouseLeave('', 'default')}
+      />
 
       <Footer />
-    </div>
+    </motion.div>
   );
 }
