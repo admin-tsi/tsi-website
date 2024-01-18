@@ -14,5 +14,7 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'pnpm'
+      - name: Install pnpm
+        run: npm install -g pnpm
       - run: pnpm install
       - run: pnpm test
