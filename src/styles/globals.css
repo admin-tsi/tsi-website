@@ -110,6 +110,10 @@ video {
   animation-timeline: view(y);
 }
 
+.scroll-reveal span span {
+  color: rgb(194 65 12)!important;
+  background-image: none!important;
+}
 .scroll-reveal p span {
   animation-range-start: cover 60vh;
   animation-range-end: cover 100vh;
@@ -119,4 +123,11 @@ video {
   to {
     background-size: 100% 100%;
   }
+}
+
+.gradient-link {
+  background: linear-gradient(45deg, #316C45, #A8303A, #D7B747, #313C74);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
 }

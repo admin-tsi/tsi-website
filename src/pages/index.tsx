@@ -1,24 +1,11 @@
-import { Logo, MobileLogo, Star } from '@/utils/svgs';
-import {
-  cubicBezier,
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { Star } from '@/utils/svgs';
+import { cubicBezier, motion, useScroll, useTransform } from 'framer-motion';
 import Footer from '@/components/Footer';
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useState } from 'react';
 import useMouse from '@react-hook/mouse-position';
 import MultiLayerParallax from '@/components/MultiLayerParallax';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
-import ResizeObserver from 'resize-observer-polyfill';
 function useConditionalMouse(ref: any) {
   return useMouse(ref, {
     enterDelay: 100,
@@ -35,17 +22,15 @@ export default function Index() {
   let mouseXPosition: number | null = 0;
   let mouseYPosition: number | null = 0;
 
-  if (typeof window !== 'undefined') {
-    // @ts-ignore
-    const mouse = useConditionalMouse(ref); // Use the custom hook here
+  // @ts-ignore
+  const mouse = useConditionalMouse(ref);
 
-    if (mouse.x !== null) {
-      mouseXPosition = mouse.clientX;
-    }
+  if (mouse.x !== null) {
+    mouseXPosition = mouse.clientX;
+  }
 
-    if (mouse.y !== null) {
-      mouseYPosition = mouse.clientY;
-    }
+  if (mouse.y !== null) {
+    mouseYPosition = mouse.clientY;
   }
 
   const variants = {
@@ -103,6 +88,22 @@ export default function Index() {
       x: mouseXPosition !== null ? mouseXPosition - 48 : 0,
       y: mouseYPosition !== null ? mouseYPosition - 48 : 0,
     },
+    image: {
+      opacity: 1,
+      height: '5rem', // Set the height as needed
+      width: '5rem', // Set the width as needed
+      backgroundColor: '#fff',
+      x: mouseXPosition,
+      y: mouseYPosition,
+      backgroundImage: "url('ian_tradi.png')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      borderRadius: '9999px', // for rounded image
+      transition: {
+        type: 'spring',
+        mass: 0.6,
+      },
+    },
   };
 
   const spring = {
@@ -121,7 +122,7 @@ export default function Index() {
     setCursorVariant(variant);
   }
 
-  const { scrollY, scrollYProgress } = useScroll({
+  const { scrollY } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   });
@@ -140,19 +141,6 @@ export default function Index() {
     clamp: true,
     ease: cubicBezier(0.6, -0.05, 0.01, 0.99),
   });
-
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
   return (
     <motion.div className="flex flex-col h-screen relative" ref={ref}>
@@ -178,19 +166,15 @@ export default function Index() {
           loop
           muted
           preload="meta"
-          style={
-            isSmallScreen
-              ? {}
-              : {
-                  scale,
-                  translateY,
-                  translateX,
-                  transition: 'all 1s ease-in-out',
-                  transformOrigin: 'right top',
-                }
-          }
+          style={{
+            scale,
+            translateY,
+            translateX,
+            transition: 'all 1s ease-in-out',
+            transformOrigin: 'right top',
+          }}
         >
-          <source src="e.mp4" type="video/mp4" />
+          <source src="hero.mp4" type="video/mp4" />
         </motion.video>
         <div className="mix-blend-difference text-white font-bold text-center w-full left-1/2 -translate-x-1/2 absolute uppercase overflow-hidden bottom-0 mb-12 font-clash">
           <div className="overflow-hidden">
@@ -268,13 +252,22 @@ export default function Index() {
             </h1>
           </div>
           <div className="scroll-reveal">
-            <p className="text-3xl lg:text-5xl mr-12 w-full md:w-3/4">
+            <p className="text-3xl lg:text-4xl mr-12 w-full md:w-3/4">
               <span className="here">
-                Forem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
-                Class aptent taciti sociosqu ad litora torquent per conubia
-                nostra, per inceptos himenaeos. Curabitur tempus urna at turpis
-                condimentum lobortis.
+                Welcome to TAILORING SPORTS INVESTMENTS (TSI), founded in August
+                2023 by{' '}
+                <span
+                  className="font-semibold cursor-pointer animate-pulse"
+                  onMouseEnter={() => mouseEnter('', 'image')}
+                  onMouseLeave={() => mouseLeave('', 'default')}
+                >
+                  Ian Mahinmi
+                </span>{' '}
+                , a seasoned entrepreneur and athlete with over 20 years of
+                experience in NBA and the Africa. Our mission at TSI is to
+                foster the growth of the sports industry in Benin and Africa,
+                emphasizing innovation and excellence. Join us in shaping the
+                future of African sports.
               </span>
             </p>
           </div>

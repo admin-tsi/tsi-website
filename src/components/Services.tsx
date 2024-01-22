@@ -34,7 +34,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         {title}
       </motion.h3>
       <motion.h6
-        className="text-4xl font-medium"
+        className="text-2xl lg:text-4xl font-medium"
         variants={animationVariants}
         initial="hidden"
         animate={isActive ? 'visible' : 'hidden'}
@@ -47,14 +47,27 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 };
 
 const useMediaQuery = (query: string) => {
-  const [matches, setMatches] = useState(window.matchMedia(query).matches);
+  // Initialize with a default value, such as `false`
+  const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia(query);
-    const listener = () => setMatches(media.matches);
-    media.addEventListener('change', listener);
-    return () => media.removeEventListener('change', listener);
-  }, [matches, query]);
+    if (typeof window !== 'undefined') {
+      // Define a function to update the state based on the media query
+      const media = window.matchMedia(query);
+      const updateMatch = () => {
+        setMatches(media.matches);
+      };
+
+      // Set the initial state based on the current window properties
+      updateMatch();
+
+      // Add the listener for changes in the media query
+      media.addEventListener('change', updateMatch);
+
+      // Cleanup function to remove the listener when the component unmounts
+      return () => media.removeEventListener('change', updateMatch);
+    }
+  }, [query]);
 
   return matches;
 };
@@ -65,14 +78,26 @@ const Services: React.FC = () => {
     target: ref,
     offset: ['start center', 'end center'],
   });
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [viewportHeight, setViewportHeight] = useState(0);
   const [hoveredService, setHoveredService] = useState<string | null>(null);
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
-    const handleResize = () => setViewportHeight(window.innerHeight);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Update the state to the actual window height once the component is mounted
+    if (typeof window !== 'undefined') {
+      const updateViewportHeight = () => {
+        setViewportHeight(window.innerHeight);
+      };
+
+      // Set the initial value
+      updateViewportHeight();
+
+      // Update the value on resize
+      window.addEventListener('resize', updateViewportHeight);
+
+      // Cleanup the event listener when the component unmounts
+      return () => window.removeEventListener('resize', updateViewportHeight);
+    }
   }, []);
 
   const h3Y = useTransform(
@@ -96,7 +121,7 @@ const Services: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="w-full lg:min-h-full pb-72 lg:py-72 overflow-hidden font-clash bg-primary text-white"
+      className="w-full min-h-full pb-72 lg:py-72 overflow-hidden font-clash bg-primary text-white"
     >
       <div className="flex flex-col md:flex-row items-start">
         <motion.h3
