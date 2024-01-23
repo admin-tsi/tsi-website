@@ -3,9 +3,7 @@ name: Running tests workflow
 on: [push]
 
 jobs:
-
   test:
-    
     runs-on: ubuntu-latest
     timeout-minutes: 10
     
@@ -15,5 +13,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-      - run: npm ci
-      - run: npm test
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - run: pnpm install
+      - run: pnpm test
