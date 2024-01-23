@@ -29,12 +29,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         initial={{ y: 150 }}
         animate={{ y: 0 }}
         transition={{ delay: 1, ease: [0.6, -0.05, 0.01, 0.99], duration: 2.2 }}
-        className="pt-10"
+        className="pt-10 hover:text-secondary text-4xl lg:text-8xl font-black uppercase"
       >
         {title}
       </motion.h3>
       <motion.h6
-        className="text-2xl lg:text-4xl font-medium"
+        className="text-2xl lg:text-4xl font-light"
         variants={animationVariants}
         initial="hidden"
         animate={isActive ? 'visible' : 'hidden'}
@@ -112,10 +112,25 @@ const Services: React.FC = () => {
   }, []);
 
   const services = [
-    { title: 'Events', description: 'We organize and manage events...' },
-    { title: 'Workforces', description: 'We provide workforces...' },
-    { title: 'Health', description: 'We provide health services...' },
-    { title: 'Infrastructures', description: 'We provide infrastructures...' },
+    {
+      title: 'Events',
+      description: 'We organize events to improve and promote sport in Africa.',
+    },
+    {
+      title: 'Workforces',
+      description:
+        'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
+    },
+    {
+      title: 'Health',
+      description:
+        'We contribute to the training of physical and mental health professionals in the field of sport.',
+    },
+    {
+      title: 'Infrastructures',
+      description:
+        'We support the development of high-level sports infrastructure in Africa.',
+    },
   ];
 
   return (

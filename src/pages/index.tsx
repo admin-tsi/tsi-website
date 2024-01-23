@@ -6,6 +6,7 @@ import useMouse from '@react-hook/mouse-position';
 import MultiLayerParallax from '@/components/MultiLayerParallax';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
+import Link from 'next/link';
 function useConditionalMouse(ref: any) {
   return useMouse(ref, {
     enterDelay: 100,
@@ -142,6 +143,18 @@ export default function Index() {
     ease: cubicBezier(0.6, -0.05, 0.01, 0.99),
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to open the modal
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <motion.div className="flex flex-col h-screen relative" ref={ref}>
       <motion.div
@@ -155,10 +168,35 @@ export default function Index() {
       </motion.div>
 
       <Header />
+      {isModalOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.video
+            className=" mtz-vlc-dkbcc"
+            autoPlay
+            controls={true}
+            preload="meta"
+          >
+            <source src="hero.mp4" type="video/mp4" />
+          </motion.video>
+          <button
+            className="absolute top-4 right-4 text-white"
+            onClick={closeModal}
+          >
+            Close
+          </button>
+        </motion.div>
+      )}
+
       <section
         className="relative flex items-center min-h-screen bg-cover bg-center font-clash "
         onMouseEnter={() => mouseEnter('play', 'play')}
         onMouseLeave={() => mouseLeave('', 'default')}
+        onClick={openModal}
       >
         <motion.video
           className="absolute inset-0 w-full h-full object-cover -z-10 bg-neutral2 mtz-vlc-dkbcc"
@@ -185,7 +223,7 @@ export default function Index() {
               transition={{ delay: 0.3, ease: easing, duration: 0.5 }}
               className="text-2xl sm:text-3xl md:text-5xl xl:text-7xl"
             >
-              Everyone has
+              Shaping Future
             </motion.div>
           </div>
           <div className="overflow-hidden">
@@ -196,7 +234,7 @@ export default function Index() {
               transition={{ delay: 0.5, ease: easing, duration: 0.7 }}
               className="text-3xl sm:text-4xl md:text-6xl xl:text-8xl"
             >
-              A story to tell
+              Inspiring Progress
             </motion.div>
           </div>
           <div className="overflow-hidden">
@@ -207,7 +245,7 @@ export default function Index() {
               transition={{ delay: 0.7, ease: easing, duration: 0.9 }}
               className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl"
             >
-              And to be heard
+              Creating Impact
             </motion.div>
           </div>
           <motion.h3
@@ -261,11 +299,11 @@ export default function Index() {
                   onMouseEnter={() => mouseEnter('', 'image')}
                   onMouseLeave={() => mouseLeave('', 'default')}
                 >
-                  Ian Mahinmi
+                  <Link href="/biography">Ian Mahinmi</Link>
                 </span>{' '}
                 , a seasoned entrepreneur and athlete with over 20 years of
-                experience in NBA and the Africa. Our mission at TSI is to
-                foster the growth of the sports industry in Benin and Africa,
+                experience in NBA and the FIBA. Our mission at TSI is to foster
+                the growth of the sports industry in Benin and Africa,
                 emphasizing innovation and excellence. Join us in shaping the
                 future of African sports.
               </span>
