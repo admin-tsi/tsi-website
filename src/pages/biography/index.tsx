@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import IanTradi from '../../../public/ian_tradi.png';
 import Jamaica from '../../../public/biography/jamaica.png';
 import France from '../../../public/biography/france.png';
-import Usa from '../../../public/biography/usa.png';
 import Benin from '../../../public/biography/benin.png';
 import One from '../../../public/biography/1.jpg';
 import Two from '../../../public/biography/2.jpg';
@@ -87,7 +86,7 @@ export default function Index() {
       <Header />
 
       {/* Hero Section */}
-      <section className="mt-44 ">
+      <section className="mt-44 px-6 md:px-16">
         <div className="container mx-auto flex flex-col justify-between md:flex-row items-start py-12 md:py-24">
           <div className="w-full md:w-1/2 text-center md:text-left px-4">
             <div>
@@ -121,13 +120,13 @@ export default function Index() {
                     className="object-contain  h-full"
                   />
                 </div>
-                <div className="w-22 h-16 overflow-hidden">
+                {/*         <div className="w-22 h-16 overflow-hidden">
                   <img
                     src={Usa.src}
                     alt="USA"
                     className="object-contain  h-full"
                   />
-                </div>
+                </div>*/}
               </div>
               <p className="text-xl md:text-2xl font-light mt-4"></p>
             </div>
@@ -142,7 +141,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="nba">
+      <section className="nba px-6 md:px-16">
         <div className="container mx-auto py-12 md:py-24">
           <motion.div variants={fadeInUp}>
             <h2 className="text-3xl font-bold">
@@ -160,7 +159,7 @@ export default function Index() {
               played for various teams, most notably the{' '}
               <strong>Dallas Mavericks</strong>, where he was a part of the{' '}
               <strong>2011 NBA Championship</strong> team. He also played
-              significant roles with the <strong>Indiana Pacers</strong> and the
+              significant roles with the <strong>Indiana Pacers</strong> and the{' '}
               <strong>Washington Wizards</strong>. His defensive prowess and
               rebounding skills earned him a reputation as a{' '}
               <strong>reliable center</strong>. Representing France in
@@ -172,7 +171,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="i-am-foundation-section">
+      <section className="i-am-foundation-section px-6 md:px-16">
         <div className="container mx-auto py-12 md:py-24">
           <motion.div variants={fadeInUp}>
             <h2 className="text-3xl font-bold">
@@ -210,7 +209,8 @@ export default function Index() {
           </motion.div>
         </div>
       </section>
-      <section className="retirement">
+
+      <section className="retirement px-6 md:px-16">
         <div className="container mx-auto py-12 md:py-24">
           <motion.div variants={fadeInUp}>
             <h2 className="text-3xl font-bold">
@@ -226,12 +226,12 @@ export default function Index() {
               <strong>revolutionize the sports industry</strong> in{' '}
               <strong>Africa</strong>, beginning with <strong>Benin</strong>,
               his father&apos;s homeland where he founded a company focusing on{' '}
-              <strong>sports investment</strong> with the goal of elevating
-              competition levels, encouraging creativity, and inspiring new
-              generations of athletes and sports entrepreneurs. His efforts aim
-              to transform the African sports landscape into a vibrant
-              ecosystem, rich in opportunities and poised for global
-              recognition. Ian Mahinmi&apos;s story is one of{' '}
+              <strong>sports</strong> with the goal of elevating competition
+              levels, encouraging creativity, and inspiring new generations of
+              athletes and sports entrepreneurs. His efforts aim to transform
+              the African sports landscape into a vibrant ecosystem, rich in
+              opportunities and poised for global recognition. Ian
+              Mahinmi&apos;s story is one of{' '}
               <strong>multicultural richness</strong> and{' '}
               <strong>professional achievement</strong>. From his early days in
               France to his triumphs in the NBA, and now his visionary work in
@@ -242,7 +242,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="gallery-section">
+      <section className="gallery-section px-6 md:px-16">
         <div className="container mx-auto py-12 md:py-24">
           <motion.div variants={fadeIn}>
             <h2 className="text-3xl font-bold text-center">Gallery</h2>

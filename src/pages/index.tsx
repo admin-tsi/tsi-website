@@ -1,12 +1,13 @@
 import { Star } from '@/utils/svgs';
 import { cubicBezier, motion, useScroll, useTransform } from 'framer-motion';
 import Footer from '@/components/Footer';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMouse from '@react-hook/mouse-position';
 import MultiLayerParallax from '@/components/MultiLayerParallax';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
 import Link from 'next/link';
+import ArticleSection from '@/components/Articles';
 function useConditionalMouse(ref: any) {
   return useMouse(ref, {
     enterDelay: 100,
@@ -150,10 +151,24 @@ export default function Index() {
     setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const [largeScreen, setLargeScreen] = useState(0);
+  useEffect(() => {
+    const handleResize = () => {
+      setLargeScreen(window.innerWidth);
+    };
+
+    // Set the initial value
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <motion.div className="flex flex-col h-screen relative" ref={ref}>
@@ -164,7 +179,7 @@ export default function Index() {
         animate={cursorVariant}
         transition={spring}
       >
-        <span className="cursorText font-clash">{cursorText}</span>
+        <span className="cursorText font-clash ">{cursorText}</span>
       </motion.div>
 
       <Header />
@@ -175,12 +190,7 @@ export default function Index() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.video
-            className=" mtz-vlc-dkbcc"
-            autoPlay
-            controls={true}
-            preload="meta"
-          >
+          <motion.video className=" mtz-vlc-dkbcc" autoPlay controls={true}>
             <source src="hero.mp4" type="video/mp4" />
           </motion.video>
           <button
@@ -204,13 +214,17 @@ export default function Index() {
           loop
           muted
           preload="meta"
-          style={{
-            scale,
-            translateY,
-            translateX,
-            transition: 'all 1s ease-in-out',
-            transformOrigin: 'right top',
-          }}
+          style={
+            largeScreen > 1024
+              ? {
+                  scale,
+                  translateY,
+                  translateX,
+                  transition: 'all 1s ease-in-out',
+                  transformOrigin: 'right top',
+                }
+              : {}
+          }
         >
           <source src="hero.mp4" type="video/mp4" />
         </motion.video>
@@ -312,133 +326,10 @@ export default function Index() {
         </div>
       </section>
       <Services />
-      <section className="px-6 md:px-36 py-10 md:py-26 font-clash">
-        <div className="flex flex-col mb-2 lg:mt-20 lg:mb-12 px-4 lg:px-16">
-          <div className="flex items-center mb-12 justify-between">
-            <h2 className="text-primary text-3xl lg:text-6xl pr-3 ">Latest</h2>
-            <div className="border m-4 w-full bg-primary hidden lg:block"></div>
-            <motion.button
-              whileHover={{
-                scale: 1,
-                transition: { ease: 'easeInOut', duration: 0.5 },
-                backgroundColor: '#E9C168',
-              }}
-              type="button"
-              className="text-white text-xxs md:text-md bg-primary focus:outline-none font-medium rounded-full px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
-            >
-              VIEW ALL
-            </motion.button>
-          </div>
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
-            onMouseEnter={() => mouseEnter('View', 'article')}
-            onMouseLeave={() => mouseLeave('', 'default')}
-          >
-            <div
-              className="col-span-4 md:col-span-2 row-span-2 lg:flex-shrink-0 lg:max-w-335px transform translate-x-10 opacity-0 h-[250px] lg:min-h-[375px] lg:h-auto"
-              style={{ transform: 'translate(0px, 0px)', opacity: 1 }}
-            >
-              <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-                <img
-                  src="https://images.wsj.net/im-880822/?width=1278&size=1"
-                  alt="Big Article Image"
-                  className="w-full object-cover h-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
-                  <div className="flex items-center space-x-4">
-                    <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
-                      Article
-                    </h4>
-                    <div
-                      className="h-px w-full bg-white relative"
-                      style={{ top: '-1px' }}
-                    ></div>
-                  </div>
-                  <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
-                    Big Article Title
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-4">
-              <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-                <img
-                  src="https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/ss_3pt_lavine_0.jpg"
-                  alt="Small Article 1 Image"
-                  className="w-full object-cover h-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
-                  <div className="flex items-center space-x-4">
-                    <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
-                      Article
-                    </h4>
-                    <div
-                      className="h-px w-full bg-white relative"
-                      style={{ top: '-1px' }}
-                    ></div>
-                  </div>
-                  <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none sm:text-lg md:text-xl lg:text-2xl">
-                    Small Article 1 Title
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-4 md:col-span-2">
-              <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-                <img
-                  src="https://thetournament.com/wp-content/uploads/2023/08/Screenshot-2023-08-01-at-5.59.00-PM.png"
-                  alt="Small Article 2 Image"
-                  className="w-full object-cover h-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
-                  <div className="flex items-center space-x-4">
-                    <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
-                      Article
-                    </h4>
-                    <div
-                      className="h-px w-full bg-white relative"
-                      style={{ top: '-1px' }}
-                    ></div>
-                  </div>
-                  <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
-                    Small Article 2 Title
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-4 md:col-span-2">
-              <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-                <img
-                  src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
-                  alt="Small Article 3 Image"
-                  className="w-full object-cover h-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-                <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
-                  <div className="flex items-center space-x-4">
-                    <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
-                      Article
-                    </h4>
-                    <div
-                      className="h-px w-full bg-white relative"
-                      style={{ top: '-1px' }}
-                    ></div>
-                  </div>
-                  <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none lg:text-2xl sm:text-lg md:text-xl">
-                    Small Article 3 Title
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ArticleSection
+        onMouseEnter={() => mouseEnter('View', 'article')}
+        onMouseLeave={() => mouseLeave('', 'default')}
+      />
       <MultiLayerParallax
         mouseEnter={() => mouseEnter('Lets talk', 'talk')}
         mouseLeave={() => mouseLeave('', 'default')}

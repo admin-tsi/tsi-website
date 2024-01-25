@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
 
 interface ServiceSectionProps {
   title: string;
   description: string;
   isActive: boolean;
   onHover: (title: string | null) => void;
+  logo: React.FC<{ className: string }>;
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
@@ -13,6 +15,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   description,
   isActive,
   onHover,
+  logo: Logos,
 }) => {
   const animationVariants = {
     visible: { opacity: 1, y: 0 },
@@ -25,16 +28,29 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
       onMouseEnter={() => onHover(title)}
       onMouseLeave={() => onHover(null)}
     >
-      <motion.h3
-        initial={{ y: 150 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 1, ease: [0.6, -0.05, 0.01, 0.99], duration: 2.2 }}
-        className="pt-10 hover:text-secondary text-4xl lg:text-8xl font-black uppercase"
-      >
-        {title}
-      </motion.h3>
+      <div className="flex pt-6 lg:pt-10 items-baseline">
+        <motion.h3
+          initial={{ y: 150 }}
+          animate={{ y: 0 }}
+          transition={{
+            delay: 1,
+            ease: [0.6, -0.05, 0.01, 0.99],
+            duration: 2.2,
+          }}
+          className="text-2xl lg:text-8xl font-black uppercase"
+        >
+          {title}
+        </motion.h3>
+        <motion.div
+          variants={animationVariants}
+          initial="hidden"
+          animate={isActive ? 'visible' : 'hidden'}
+        >
+          <Logos className="p-0 lg:pl-6 h-6 lg:h-20 justify-center text-secondary " />
+        </motion.div>
+      </div>
       <motion.h6
-        className="text-2xl lg:text-4xl font-light"
+        className="text-md lg:text-4xl font-light"
         variants={animationVariants}
         initial="hidden"
         animate={isActive ? 'visible' : 'hidden'}
@@ -46,108 +62,86 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   );
 };
 
-const useMediaQuery = (query: string) => {
-  // Initialize with a default value, such as `false`
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Define a function to update the state based on the media query
-      const media = window.matchMedia(query);
-      const updateMatch = () => {
-        setMatches(media.matches);
-      };
-
-      // Set the initial state based on the current window properties
-      updateMatch();
-
-      // Add the listener for changes in the media query
-      media.addEventListener('change', updateMatch);
-
-      // Cleanup function to remove the listener when the component unmounts
-      return () => media.removeEventListener('change', updateMatch);
-    }
-  }, [query]);
-
-  return matches;
-};
-
-const Services: React.FC = () => {
+const Services = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start center', 'end center'],
   });
-  const [viewportHeight, setViewportHeight] = useState(0);
+
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const [hoveredService, setHoveredService] = useState<string | null>(null);
-  const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
-    // Update the state to the actual window height once the component is mounted
     if (typeof window !== 'undefined') {
-      const updateViewportHeight = () => {
-        setViewportHeight(window.innerHeight);
+      const updateViewportSize = () => {
+        setViewportSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
       };
 
-      // Set the initial value
-      updateViewportHeight();
-
-      // Update the value on resize
-      window.addEventListener('resize', updateViewportHeight);
-
-      // Cleanup the event listener when the component unmounts
-      return () => window.removeEventListener('resize', updateViewportHeight);
+      updateViewportSize();
+      window.addEventListener('resize', updateViewportSize);
+      return () => window.removeEventListener('resize', updateViewportSize);
     }
   }, []);
 
+  // Adjust transformation based on viewport size
   const h3Y = useTransform(
     scrollYProgress,
     [0, 1],
-    [-viewportHeight / 2, viewportHeight / 2]
+    [-viewportSize.height / 2, viewportSize.height / 2]
   );
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
 
   const handleHover = useCallback((service: string | null) => {
     setHoveredService(service);
   }, []);
-
   const services = [
     {
       title: 'Events',
       description: 'We organize events to improve and promote sport in Africa.',
+      svg: EventLogo,
     },
     {
       title: 'Workforces',
       description:
         'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
+      svg: WorkforceLogo,
     },
     {
       title: 'Health',
       description:
         'We contribute to the training of physical and mental health professionals in the field of sport.',
+      svg: HealthLogo,
     },
     {
       title: 'Infrastructures',
       description:
         'We support the development of high-level sports infrastructure in Africa.',
+      svg: InfraLogo,
     },
   ];
 
+  const sectionClassNames =
+    'w-full min-h-full pb-20 md:pb-72 lg:py-72 overflow-hidden font-clash bg-primary text-white';
+  const titleClassNames = 'uppercase text-xl lg:text-3xl px-6 md:px-16';
+  const servicesClassNames =
+    'uppercase text-3xl lg:text-8xl font-black flex-col px-6 container';
+
   return (
-    <section
-      ref={ref}
-      className="w-full min-h-full pb-72 lg:py-72 overflow-hidden font-clash bg-primary text-white"
-    >
-      <div className="flex flex-col md:flex-row items-start">
+    <section ref={ref} className={sectionClassNames}>
+      <div className="flex flex-col md:flex-row items-start my-20">
         <motion.h3
-          className="uppercase text-xl lg:text-xl px-6 md:px-16"
-          style={{ y: isSmallScreen ? 0 : h3Y }}
+          className={titleClassNames}
+          style={viewportSize.width > 1024 ? { y: h3Y } : {}}
         >
           Services
         </motion.h3>
         <motion.div
-          className="uppercase text-4xl lg:text-8xl font-black flex-col px-6"
-          style={{ y: isSmallScreen ? 0 : textY }}
+          className={servicesClassNames}
+          style={viewportSize.width > 1024 ? { y: textY } : {}}
         >
           {services.map((service) => (
             <ServiceSection
@@ -156,6 +150,7 @@ const Services: React.FC = () => {
               description={service.description}
               isActive={hoveredService === service.title}
               onHover={handleHover}
+              logo={service.svg}
             />
           ))}
         </motion.div>
