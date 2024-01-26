@@ -1,5 +1,15 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+// Define a type for the name of each menu item
+type MenuItemName = 'Home' | 'Biography' | 'Services' | 'Career' | 'Contact';
+
+// Define the structure of each menu item
+type MenuItem = {
+  name: MenuItemName;
+  url: string;
+};
 
 const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -39,10 +49,7 @@ const Menu: React.FC = () => {
   };
 
   const handleMouseMove = (event: MouseEvent<HTMLLIElement>) => {
-    // Calculate the element's top position relative to the viewport
     const elementTop = event.currentTarget.getBoundingClientRect().top;
-
-    // Adjust mouseYPosition to account for the element's offset
     setMouseYPosition(event.clientY - elementTop);
   };
 
@@ -59,7 +66,22 @@ const Menu: React.FC = () => {
     },
   };
 
-  const menuItems = ['Home', 'About', 'Services', 'Contact'];
+  // Define floating texts with the specific type for keys
+  const floatingTexts: Record<MenuItemName, string> = {
+    Home: 'Welcome',
+    Biography: 'About Me',
+    Services: 'What We Offer',
+    Career: 'Join Us',
+    Contact: 'Get in Touch',
+  };
+
+  const menuItems: MenuItem[] = [
+    { name: 'Home', url: '/' },
+    { name: 'Biography', url: '/biography' },
+    { name: 'Services', url: '/#services' },
+    { name: 'Career', url: '/career' },
+    { name: 'Contact', url: '/#contact' },
+  ];
 
   return (
     <>
@@ -115,7 +137,7 @@ const Menu: React.FC = () => {
               }
               className="mb-4 relative"
             >
-              {item}
+              <Link href={item.url}>{item.name}</Link>
               {hoveredItem === index && (
                 <motion.span
                   style={{
@@ -124,12 +146,12 @@ const Menu: React.FC = () => {
                     top: mouseYPosition,
                   }}
                   variants={floatingTextVariants}
-                  initial="hoverEnd" // Initial state
-                  animate="hoverStart" // Animate to this state on hover start
-                  exit="hoverEnd" // Animate to this state on hover end
+                  initial="hoverEnd"
+                  animate="hoverStart"
+                  exit="hoverEnd"
                   className="text-sm text-white"
                 >
-                  Floating Text
+                  {floatingTexts[item.name]}
                 </motion.span>
               )}
             </motion.li>
