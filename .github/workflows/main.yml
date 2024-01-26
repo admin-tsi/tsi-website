@@ -3,7 +3,7 @@ name: Mirroring
 on: [push]
 
 jobs:
-  to_gitlab:
+  mirroring:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
