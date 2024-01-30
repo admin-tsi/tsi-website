@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
+import Link from 'next/link';
 
 interface ServiceSectionProps {
   title: string;
@@ -8,6 +9,7 @@ interface ServiceSectionProps {
   isActive: boolean;
   onHover: (title: string | null) => void;
   logo: React.FC<{ className: string }>;
+  url: string;
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
@@ -16,6 +18,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   isActive,
   onHover,
   logo: Logos,
+  url,
 }) => {
   const animationVariants = {
     visible: { opacity: 1, y: 0 },
@@ -23,42 +26,39 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   };
 
   return (
-    <div
-      className="overflow-hidden"
-      onMouseEnter={() => onHover(title)}
-      onMouseLeave={() => onHover(null)}
-    >
-      <div className="flex pt-6 lg:pt-10 items-baseline">
-        <motion.h3
-          initial={{ y: 150 }}
-          animate={{ y: 0 }}
-          transition={{
-            delay: 1,
-            ease: [0.6, -0.05, 0.01, 0.99],
-            duration: 2.2,
-          }}
-          className="text-2xl lg:text-8xl font-black uppercase"
-        >
-          {title}
-        </motion.h3>
-        <motion.div
+    <Link href={url} passHref>
+      <div
+        className="overflow-hidden cursor-pointer"
+        onMouseEnter={() => onHover(title)}
+        onMouseLeave={() => onHover(null)}
+      >
+        <div className="flex pt-6 lg:pt-10 items-baseline">
+          <motion.h3
+            initial={{ y: 150 }}
+            animate={{ y: 0 }}
+            className="text-2xl lg:text-8xl font-black uppercase"
+          >
+            {title}
+          </motion.h3>
+          <motion.div
+            variants={animationVariants}
+            initial="hidden"
+            animate={isActive ? 'visible' : 'hidden'}
+          >
+            <Logos className="p-0 lg:pl-6 h-6 lg:h-20 justify-center text-secondary " />
+          </motion.div>
+        </div>
+        <motion.h6
+          className="text-md lg:text-4xl font-light"
           variants={animationVariants}
           initial="hidden"
           animate={isActive ? 'visible' : 'hidden'}
+          transition={{ duration: 0.5 }}
         >
-          <Logos className="p-0 lg:pl-6 h-6 lg:h-20 justify-center text-secondary " />
-        </motion.div>
+          {description}
+        </motion.h6>
       </div>
-      <motion.h6
-        className="text-md lg:text-4xl font-light"
-        variants={animationVariants}
-        initial="hidden"
-        animate={isActive ? 'visible' : 'hidden'}
-        transition={{ duration: 0.5 }}
-      >
-        {description}
-      </motion.h6>
-    </div>
+    </Link>
   );
 };
 
@@ -103,24 +103,28 @@ const Services = () => {
       title: 'Events',
       description: 'We organize events to improve and promote sport in Africa.',
       svg: EventLogo,
+      url: '/services/events',
     },
     {
       title: 'Workforces',
       description:
         'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
       svg: WorkforceLogo,
+      url: '/services/workforces',
     },
     {
       title: 'Health',
       description:
         'We contribute to the training of physical and mental health professionals in the field of sport.',
       svg: HealthLogo,
+      url: '/services/heath',
     },
     {
       title: 'Infrastructures',
       description:
         'We support the development of high-level sports infrastructure in Africa.',
       svg: InfraLogo,
+      url: '/services/infrastructures',
     },
   ];
 
@@ -131,7 +135,7 @@ const Services = () => {
     'uppercase text-3xl lg:text-8xl font-black flex-col px-6 container';
 
   return (
-    <section ref={ref} className={sectionClassNames}>
+    <section ref={ref} className={sectionClassNames} id="services">
       <div className="flex flex-col md:flex-row items-start my-20">
         <motion.h3
           className={titleClassNames}
@@ -145,6 +149,7 @@ const Services = () => {
         >
           {services.map((service) => (
             <ServiceSection
+              url={service.url}
               key={service.title}
               title={service.title}
               description={service.description}

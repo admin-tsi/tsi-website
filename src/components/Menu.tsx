@@ -1,6 +1,8 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import {  Star } from '@/utils/svgs';
+import { useRouter } from 'next/router'; // Correctly importing useRouter
 
 // Define a type for the name of each menu item
 type MenuItemName = 'Home' | 'Biography' | 'Services' | 'Career' | 'Contact';
@@ -15,6 +17,7 @@ const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [mouseYPosition, setMouseYPosition] = useState<number>(0);
+  const router = useRouter(); // Use useRouter to handle routing
 
   useEffect(() => {
     if (isOpen) {
@@ -69,7 +72,7 @@ const Menu: React.FC = () => {
   // Define floating texts with the specific type for keys
   const floatingTexts: Record<MenuItemName, string> = {
     Home: 'Welcome',
-    Biography: 'About Me',
+    Biography: 'About Ian Mahimi',
     Services: 'What We Offer',
     Career: 'Join Us',
     Contact: 'Get in Touch',
@@ -99,13 +102,12 @@ const Menu: React.FC = () => {
         animate={isOpen ? 'open' : 'closed'}
         variants={menuVariants}
         transition={transition}
-        className="fixed top-0 left-0 w-full h-full bg-accent text-white z-50 flex flex-col justify-center items-center font-clash"
+        className="fixed top-0 left-0 w-full h-full bg-primary text-white z-50 flex flex-col justify-center items-center font-clash"
       >
         <button
           onClick={() => setIsOpen(false)}
           className="absolute top-5 right-5"
         >
-          {/* Replace this with your SVG close icon */}
           <svg
             width="24"
             height="24"
@@ -129,6 +131,7 @@ const Menu: React.FC = () => {
               onHoverStart={() => handleHoverStart(index)}
               onHoverEnd={handleHoverEnd}
               onMouseMove={handleMouseMove}
+              onClick={() => setIsOpen(false)}
               variants={menuItemVariants}
               animate={
                 hoveredItem === null || hoveredItem === index
@@ -137,7 +140,10 @@ const Menu: React.FC = () => {
               }
               className="mb-4 relative"
             >
-              <Link href={item.url}>{item.name}</Link>
+              {router.pathname === item.url && (
+                <Star className="inline-block" /> // Display the MobileLogo if the item is active
+              )}
+              <Link href={item.url} className="ml-4">{item.name}</Link>
               {hoveredItem === index && (
                 <motion.span
                   style={{

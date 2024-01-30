@@ -4,7 +4,6 @@ import Footer from '@/components/Footer';
 import React, { useEffect, useState } from 'react';
 import useMouse from '@react-hook/mouse-position';
 import MultiLayerParallax from '@/components/MultiLayerParallax';
-import Header from '@/components/Header';
 import Services from '@/components/Services';
 import Link from 'next/link';
 import ArticleSection from '@/components/Articles';
@@ -182,7 +181,6 @@ export default function Index() {
         <span className="cursorText font-clash ">{cursorText}</span>
       </motion.div>
 
-      <Header />
       {isModalOpen && (
         <motion.div
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
@@ -334,7 +332,6 @@ export default function Index() {
         mouseEnter={() => mouseEnter('Lets talk', 'talk')}
         mouseLeave={() => mouseLeave('', 'default')}
       />
-
       <Footer />
     </motion.div>
   );

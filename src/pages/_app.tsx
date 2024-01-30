@@ -2,6 +2,11 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import localFont from 'next/font/local';
 import { Cinzel } from 'next/font/google';
+import Header from '@/components/Header';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import Transition from '@/components/Transition';
 
 const cinzelFont = Cinzel({
   variable: '--cinzel-font',
@@ -21,9 +26,17 @@ const clashDisplayFont = localFont({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   return (
-    <main className={`${clashDisplayFont.variable} ${cinzelFont.variable}`}>
-      <Component {...pageProps} />
-    </main>
+    <AnimatePresence mode="wait" key={router.pathname}>
+      <motion.div>
+        <main className={`${clashDisplayFont.variable} ${cinzelFont.variable}`}>
+          <Header />
+          <Component {...pageProps} />
+        </main>
+
+        <Transition />
+      </motion.div>
+    </AnimatePresence>
   );
 }
