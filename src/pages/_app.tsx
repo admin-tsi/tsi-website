@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </main>
 
-        <Transition />
+        <Transition className={`${cinzelFont.variable}`} />
       </motion.div>
     </AnimatePresence>
   );

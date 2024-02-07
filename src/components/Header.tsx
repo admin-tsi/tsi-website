@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import {
   Logo,
   MobileLogo,
-  HealthLogo,
-  WorkforceLogo,
-  InfraLogo,
   TailoringSportEvent,
+  TailoringSportWorkforce,
+  TailoringSportInfra,
+  TailoringSportHealth,
 } from '@/utils/svgs';
 import Link from 'next/link';
 import Menu from '@/components/Menu';
@@ -21,15 +21,15 @@ const Header = () => {
     },
     {
       path: '/services/infra',
-      svg: InfraLogo, // Assuming you have different logos for each service
+      svg: TailoringSportInfra,
     },
     {
       path: '/services/health',
-      svg: HealthLogo,
+      svg: TailoringSportHealth,
     },
     {
       path: '/services/workforce',
-      svg: WorkforceLogo,
+      svg: TailoringSportWorkforce,
     },
   ];
 
@@ -55,7 +55,7 @@ const Header = () => {
             ) : (
               <>
                 <span className="md:hidden mix-blend-difference">
-                  <MobileLogo className="text-white" />
+                  <MobileLogo className="text-white " />
                 </span>
                 <span className="hidden md:block">
                   <DynamicLogo />

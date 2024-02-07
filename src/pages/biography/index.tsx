@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IanTradi from '../../../public/ian_tradi.png';
 import Jamaica from '../../../public/biography/jamaica.png';
@@ -83,8 +82,6 @@ export default function Index() {
       exit={{ opacity: 0 }}
       className="font-cinzel"
     >
-      <Header />
-
       {/* Hero Section */}
       <section className="mt-44 px-6 md:px-16">
         <div className="container mx-auto flex flex-col justify-between md:flex-row items-start py-12 md:py-24">

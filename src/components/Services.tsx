@@ -56,6 +56,14 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           transition={{ duration: 0.5 }}
         >
           {description}
+          <motion.span
+            className="pl-2 text-secondary font-bold md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            See more
+          </motion.span>
         </motion.h6>
       </div>
     </Link>
@@ -117,7 +125,7 @@ const Services = () => {
       description:
         'We contribute to the training of physical and mental health professionals in the field of sport.',
       svg: HealthLogo,
-      url: '/services/heath',
+      url: '/services/health',
     },
     {
       title: 'Infrastructures',
@@ -153,7 +161,9 @@ const Services = () => {
               key={service.title}
               title={service.title}
               description={service.description}
-              isActive={hoveredService === service.title}
+              isActive={
+                hoveredService === service.title || viewportSize.width < 600
+              }
               onHover={handleHover}
               logo={service.svg}
             />

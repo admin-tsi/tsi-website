@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import IanTradi from '../../../../public/img_2.png';
+import IanTradi from '../../../../public/ian_tradi.png';
 import One from '../../../../public/biography/1.jpg';
 import Two from '../../../../public/biography/2.jpg';
 
@@ -96,14 +96,17 @@ const Index: React.FC = () => {
       <Header />
       {/* Hero Section */}
       <section className="relative h-[50vh]">
-        <div className=" h-full">
+        <div className="container mx-auto h-full">
           <img
             src={IanTradi.src}
             alt="Ian Mahinmi"
-            className="w-screen h-full object-cover object-center" // Adjust image to cover the new height
+            className="w-full h-full object-cover object-center" // Adjust image to cover the new height
           />
 
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4">
+          <div
+            className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+          >
             <div className="text-center text-white">
               <h1 className="text-4xl md:text-6xl font-bold">TSE</h1>
               <p className="text-xl md:text-2xl font-light mt-4">

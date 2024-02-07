@@ -213,7 +213,7 @@ export default function Index() {
           muted
           preload="meta"
           style={
-            largeScreen > 1024
+            largeScreen > 768
               ? {
                   scale,
                   translateY,
@@ -297,12 +297,12 @@ export default function Index() {
         <div className="flex flex-col w-full md:w-3/4">
           <div className="flex">
             <Star className="text-orange-700" />
-            <h1 className="text-4xl text-primary font-bold uppercase pb-8">
+            <h1 className="text-3xl md:text-4xl text-primary font-bold uppercase pb-8">
               Who we are
             </h1>
           </div>
           <div className="scroll-reveal">
-            <p className="text-3xl lg:text-4xl mr-12 w-full md:w-3/4">
+            <p className="text-2xl lg:text-4xl mr-12 w-full md:w-3/4">
               <span className="here">
                 Welcome to TAILORING SPORTS INVESTMENTS (TSI), founded in August
                 2023 by{' '}

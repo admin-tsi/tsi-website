@@ -1,11 +1,11 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import {  Star } from '@/utils/svgs';
+import { Star } from '@/utils/svgs';
 import { useRouter } from 'next/router'; // Correctly importing useRouter
 
 // Define a type for the name of each menu item
-type MenuItemName = 'Home' | 'Biography' | 'Services' | 'Career' | 'Contact';
+type MenuItemName = 'Home' | 'Biography' | 'Services' | 'News' | 'Contacts';
 
 // Define the structure of each menu item
 type MenuItem = {
@@ -74,16 +74,16 @@ const Menu: React.FC = () => {
     Home: 'Welcome',
     Biography: 'About Ian Mahimi',
     Services: 'What We Offer',
-    Career: 'Join Us',
-    Contact: 'Get in Touch',
+    News: 'Latest news',
+    Contacts: 'Get in Touch',
   };
 
   const menuItems: MenuItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Biography', url: '/biography' },
     { name: 'Services', url: '/#services' },
-    { name: 'Career', url: '/career' },
-    { name: 'Contact', url: '/#contact' },
+    { name: 'News', url: '/news' },
+    { name: 'Contacts', url: '/contacts' },
   ];
 
   return (
@@ -106,25 +106,12 @@ const Menu: React.FC = () => {
       >
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-5 right-5"
+          className="absolute top-5 right-5 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none ring-4 ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-x"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+          Close
         </button>
 
-        <ul className="text-center text-2xl md:text-8xl font-black uppercase">
+        <ul className="text-center text-4xl md:text-8xl font-black uppercase">
           {menuItems.map((item, index) => (
             <motion.li
               key={index}
@@ -134,7 +121,9 @@ const Menu: React.FC = () => {
               onClick={() => setIsOpen(false)}
               variants={menuItemVariants}
               animate={
-                hoveredItem === null || hoveredItem === index
+                hoveredItem === null ||
+                hoveredItem === index ||
+                router.pathname === item.url
                   ? 'default'
                   : 'dimmed'
               }
@@ -143,7 +132,9 @@ const Menu: React.FC = () => {
               {router.pathname === item.url && (
                 <Star className="inline-block" /> // Display the MobileLogo if the item is active
               )}
-              <Link href={item.url} className="ml-4">{item.name}</Link>
+              <Link href={item.url} className="ml-4">
+                {item.name}
+              </Link>
               {hoveredItem === index && (
                 <motion.span
                   style={{
@@ -163,6 +154,58 @@ const Menu: React.FC = () => {
             </motion.li>
           ))}
         </ul>
+        <div className="text-lg text-white font-normal absolute bottom-0 p-4 font-clash w-full">
+          <div className="flex gap-2 flex-wrap justify-center text-xs md:text-md m-4">
+            <motion.span
+              className="px-4 py-2 rounded-full border  flex items-center justify-center min-w-[100px] h-10"
+              whileHover={{
+                scale: 1.1,
+                transition: { ease: 'easeInOut', duration: 0.5 },
+                backgroundColor: '#E9C168',
+              }}
+            >
+              <a href="https://www.facebook.com/people/Tailoring-Sports-Investments/61554677080597/?mibextid=%22%22">
+                Facebook
+              </a>
+            </motion.span>
+            <motion.span
+              className="px-4 py-2 rounded-full border  flex items-center justify-center min-w-[100px] h-10"
+              whileHover={{
+                scale: 1.1,
+                transition: { ease: 'easeInOut', duration: 0.5 },
+                backgroundColor: '#E9C168',
+              }}
+            >
+              <a href="https://www.instagram.com/tailoringsports">Instagram</a>
+            </motion.span>
+            <motion.span
+              className="px-4 py-2 rounded-full border  text-center flex items-center justify-center min-w-[100px] h-10"
+              whileHover={{
+                scale: 1.1,
+                transition: { ease: 'easeInOut', duration: 0.5 },
+                backgroundColor: '#E9C168',
+              }}
+            >
+              X/Twitter
+            </motion.span>
+            <motion.span
+              className="px-4 py-2 rounded-full border  text-center flex items-center justify-center min-w-[100px] h-10"
+              whileHover={{
+                scale: 1.1,
+                transition: { ease: 'easeInOut', duration: 0.5 },
+                backgroundColor: '#E9C168',
+              }}
+            >
+              <a href="https://www.linkedin.com/company/tailoring-sports-investments/">
+                Linkedin
+              </a>
+            </motion.span>
+          </div>
+          <div className="flex w-full justify-between text-xs sm:text-md font-light pt-2">
+            <h3>Elevate Sports In Africa</h3>
+            <h3>Based in Benin 🇧🇯</h3>
+          </div>
+        </div>
       </motion.nav>
     </>
   );

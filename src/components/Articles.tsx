@@ -36,7 +36,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
           onMouseLeave={onMouseLeave}
         >
           <div
-            className="col-span-4 md:col-span-2 row-span-2 lg:flex-shrink-0 lg:max-w-335px transform translate-x-10 opacity-0 h-[250px] lg:min-h-[375px] lg:h-auto"
+            className="col-span-4 md:col-span-4 lg:col-span-2 row-span-2 lg:flex-shrink-0  transform translate-x-10 opacity-0 h-[250px] lg:min-h-[375px] lg:h-auto"
             style={{ transform: 'translate(0px, 0px)', opacity: 1 }}
           >
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">

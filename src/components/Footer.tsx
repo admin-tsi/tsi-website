@@ -4,10 +4,7 @@ import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
-    <footer
-      className="bg-primary text-white py-6 font-clash "
-      id="contact"
-    >
+    <footer className="bg-primary text-white py-6 font-clash " id="contact">
       <div className="mx-auto px-4 flex flex-col">
         <div className="flex flex-col">
           <h1 className="text-slate-300 text-xs uppercase mb-4">
@@ -19,7 +16,7 @@ const Footer: React.FC = () => {
           >
             <div className="flex items-baseline">
               <MobileLogo className="text-secondary h-5 md:h-10" />
-              <h1 className="uppercase text-xxs xs:text-xs md:text-xl ml-2 ">
+              <h1 className="uppercase text-xxs xs:text-xs md:text-xl ">
                 contact@tailoringsportinvestisement.bj
               </h1>
             </div>
@@ -44,7 +41,9 @@ const Footer: React.FC = () => {
                   backgroundColor: '#E9C168',
                 }}
               >
-                Facebook
+                <a href="https://www.facebook.com/people/Tailoring-Sports-Investments/61554677080597/?mibextid=%22%22">
+                  Facebook
+                </a>
               </motion.span>
               <motion.span
                 className="px-4 py-2 rounded-full border my-1"
@@ -54,7 +53,9 @@ const Footer: React.FC = () => {
                   backgroundColor: '#E9C168',
                 }}
               >
-                Instagram
+                <a href="https://www.instagram.com/tailoringsports">
+                  Instagram
+                </a>
               </motion.span>
               <motion.span
                 className="px-4 py-2 rounded-full border my-1 text-center"
@@ -64,7 +65,7 @@ const Footer: React.FC = () => {
                   backgroundColor: '#E9C168',
                 }}
               >
-                Twitter
+                X/Twitter
               </motion.span>
               <motion.span
                 className="px-4 py-2 rounded-full border mb-6 text-center"
@@ -74,7 +75,9 @@ const Footer: React.FC = () => {
                   backgroundColor: '#E9C168',
                 }}
               >
-                Linkedin
+                <a href="https://www.linkedin.com/company/tailoring-sports-investments/">
+                  Linkedin
+                </a>
               </motion.span>
             </div>
           </div>
