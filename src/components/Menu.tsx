@@ -5,7 +5,7 @@ import { Star } from '@/utils/svgs';
 import { useRouter } from 'next/router'; // Correctly importing useRouter
 
 // Define a type for the name of each menu item
-type MenuItemName = 'Home' | 'Biography' | 'Services' | 'News' | 'Contacts';
+type MenuItemName = 'Home' | 'About' | 'Services' | 'News' | 'Contacts';
 
 // Define the structure of each menu item
 type MenuItem = {
@@ -72,7 +72,7 @@ const Menu: React.FC = () => {
   // Define floating texts with the specific type for keys
   const floatingTexts: Record<MenuItemName, string> = {
     Home: 'Welcome',
-    Biography: 'About Ian Mahimi',
+    About: 'What defines us',
     Services: 'What We Offer',
     News: 'Latest news',
     Contacts: 'Get in Touch',
@@ -80,7 +80,7 @@ const Menu: React.FC = () => {
 
   const menuItems: MenuItem[] = [
     { name: 'Home', url: '/' },
-    { name: 'Biography', url: '/biography' },
+    { name: 'About', url: '/about' },
     { name: 'Services', url: '/#services' },
     { name: 'News', url: '/news' },
     { name: 'Contacts', url: '/contacts' },

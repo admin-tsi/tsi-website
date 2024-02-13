@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'; // Import motion if it's not already imported
 import React, { useRef } from 'react';
+import { useRouter } from 'next/router';
 
 interface ArticleSectionProps {
   onMouseEnter: any;
@@ -10,6 +11,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
   onMouseEnter,
   onMouseLeave,
 }) => {
+  const router = useRouter();
   const ref = useRef(null);
 
   return (
@@ -23,6 +25,9 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
               scale: 1,
               transition: { ease: 'easeInOut', duration: 0.5 },
               backgroundColor: '#E9C168',
+            }}
+            onClick={() => {
+              router.push('/news');
             }}
             type="button"
             className="text-white text-xxs md:text-md bg-primary focus:outline-none font-medium rounded-full px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
