@@ -137,7 +137,7 @@ const Services = () => {
   ];
 
   const sectionClassNames =
-    'w-full min-h-full pb-20 md:pb-72 lg:py-72 overflow-hidden font-clash text-white bg-primary';
+    'w-full min-h-screen pb-20 md:pb-72 lg:py-72 overflow-hidden font-clash text-white bg-primary';
   const titleClassNames = 'uppercase text-xl lg:text-3xl px-6 md:px-16';
   const servicesClassNames =
     'uppercase text-3xl lg:text-8xl font-black flex-col px-6 container ';

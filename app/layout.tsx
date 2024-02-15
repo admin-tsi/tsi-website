@@ -4,7 +4,6 @@ import React from "react";
 import localFont from 'next/font/local';
 import "@/styles/globals.css";
 import Header from "@/components/Header";
-import SmoothScroll from "@/components/LenisProvider";
 
 const cinzelFont = Cinzel({
   variable: '--cinzel-font',

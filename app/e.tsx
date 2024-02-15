@@ -175,7 +175,6 @@ function ColorChangeOnScrollGsap() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-/*
     useEffect(() => {
     // @ts-ignore
       const scrollBar = Scrollbar.init(document.querySelector('.main'), {
@@ -228,7 +227,6 @@ function ColorChangeOnScrollGsap() {
 
     return () => {};
   }, []);
-*/
 
   return (
       <motion.div className="main flex flex-col h-screen relative" ref={ref}>
