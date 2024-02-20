@@ -1,178 +1,109 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
-import Link from 'next/link';
+import Lenis from '@studio-freight/lenis';
 
-interface ServiceSectionProps {
+interface CardProps {
+  i: number;
   title: string;
   description: string;
-  isActive: boolean;
-  onHover: (title: string | null) => void;
-  logo: React.FC<{ className: string }>;
   url: string;
+  svg: React.ElementType; // Assuming SVGs are React components
+  progress: any; // use proper type from Framer Motion if available
+  range: [number, number];
+  targetScale: number;
 }
 
-const ServiceSection: React.FC<ServiceSectionProps> = ({
-  title,
-  description,
-  isActive,
-  onHover,
-  logo: Logos,
-  url,
-}) => {
-  const animationVariants = {
-    visible: { opacity: 1, y: 0 },
-    hidden: { opacity: 0, y: 20 },
-  };
+const Card: React.FC<CardProps> = ({ i, title, description, url, svg: SvgComponent, progress, range, targetScale }) => {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'start start']
+  });
+  const scale = useTransform(progress, range, [1, targetScale]);
+
+  //const scale = useTransform(progress, range, [1, 2]);
 
   return (
-    <Link href={url} passHref>
-      <div
-        className="overflow-hidden cursor-pointer"
-        onMouseEnter={() => onHover(title)}
-        onMouseLeave={() => onHover(null)}
+    <div ref={container} className="h-screen flex justify-center items-center sticky top-0 text-black">
+      <motion.div
+        className="w-2/3 h-2/3 bg-white border-red-950 border-4 rounded-3xl shadow-lg p-6 m-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+        style={{ marginTop: `calc(-5vh + ${i * 50}px)`, scale: scale }}
       >
-        <div className="flex pt-6 lg:pt-10 items-baseline">
-          <motion.h3
-            initial={{ y: 150 }}
-            animate={{ y: 0 }}
-            className="text-2xl lg:text-8xl font-black uppercase"
-          >
-            {title}
-          </motion.h3>
-          <motion.div
-            variants={animationVariants}
-            initial="hidden"
-            animate={isActive ? 'visible' : 'hidden'}
-          >
-            <Logos className="p-0 lg:pl-6 h-6 lg:h-20 justify-center text-secondary " />
-          </motion.div>
+        <div className="flex justify-center mb-4">
+          <SvgComponent className="w-6 h-6" />
         </div>
-        <motion.h6
-          className="text-md lg:text-4xl font-light"
-          variants={animationVariants}
-          initial="hidden"
-          animate={isActive ? 'visible' : 'hidden'}
-          transition={{ duration: 0.5 }}
-        >
-          {description}
-          <motion.span
-            className="pl-2 text-secondary font-bold md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            See more
-          </motion.span>
-        </motion.h6>
-      </div>
-    </Link>
+        <h2 className="text-2xl font-bold text-center mb-4">{title}</h2>
+        <p className="text-lg mb-4">{description}</p>
+        <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out">See more</a>
+      </motion.div>
+    </div>
   );
 };
 
-const Services = () => {
+interface Service {
+  title: string;
+  description: string;
+  svg: React.ElementType; // Use React.ElementType for SVG components
+  url: string;
+}
+
+const services: Service[] = [
+  {
+    title: 'Events',
+    description: 'We organize events to improve and promote sport in Africa.',
+    svg: EventLogo,
+    url: '/services/events',
+  },
+  {
+    title: 'Workforces',
+    description: 'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
+    svg: WorkforceLogo,
+    url: '/services/workforces',
+  },
+  {
+    title: 'Health',
+    description: 'We contribute to the training of physical and mental health professionals in the field of sport.',
+    svg: HealthLogo,
+    url: '/services/health',
+  },
+  {
+    title: 'Infrastructures',
+    description: 'We support the development of high-level sports infrastructure in Africa.',
+    svg: InfraLogo,
+    url: '/services/infrastructures',
+  },
+];
+
+const Services: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start center', 'end center'],
+    offset: ['start start', 'end end']
   });
 
-  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
-  const [hoveredService, setHoveredService] = useState<string | null>(null);
-
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const updateViewportSize = () => {
-        setViewportSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      };
+    const lenis = new Lenis();
 
-      updateViewportSize();
-      window.addEventListener('resize', updateViewportSize);
-      return () => window.removeEventListener('resize', updateViewportSize);
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
+
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy(); // Clean up Lenis on component unmount
   }, []);
-
-  // Adjust transformation based on viewport size
-  const h3Y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [-viewportSize.height / 2, viewportSize.height / 2]
-  );
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
-
-  const handleHover = useCallback((service: string | null) => {
-    setHoveredService(service);
-  }, []);
-  const services = [
-    {
-      title: 'Events',
-      description: 'We organize events to improve and promote sport in Africa.',
-      svg: EventLogo,
-      url: '/services/events',
-    },
-    {
-      title: 'Workforces',
-      description:
-        'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
-      svg: WorkforceLogo,
-      url: '/services/workforces',
-    },
-    {
-      title: 'Health',
-      description:
-        'We contribute to the training of physical and mental health professionals in the field of sport.',
-      svg: HealthLogo,
-      url: '/services/health',
-    },
-    {
-      title: 'Infrastructures',
-      description:
-        'We support the development of high-level sports infrastructure in Africa.',
-      svg: InfraLogo,
-      url: '/services/infrastructures',
-    },
-  ];
-
-  const sectionClassNames =
-    'w-full min-h-screen pb-20 md:pb-72 lg:py-72 overflow-hidden font-clash text-white bg-primary';
-  const titleClassNames = 'uppercase text-xl lg:text-3xl px-6 md:px-16';
-  const servicesClassNames =
-    'uppercase text-3xl lg:text-8xl font-black flex-col px-6 container ';
 
   return (
-    <section ref={ref} className={sectionClassNames} id="services" data-bgcolor="#032F35"
-             data-textcolor="#b3c2ba">
-      <div className="flex flex-col md:flex-row items-start my-20">
-        <motion.h3
-          className={titleClassNames}
-          style={viewportSize.width > 1024 ? { y: h3Y } : {}}
-        >
-          Services
-        </motion.h3>
-        <motion.div
-          className={servicesClassNames}
-          style={viewportSize.width > 1024 ? { y: textY } : {}}
-        >
-          {services.map((service) => (
-            <ServiceSection
-              url={service.url}
-              key={service.title}
-              title={service.title}
-              description={service.description}
-              isActive={
-                hoveredService === service.title || viewportSize.width < 600
-              }
-              onHover={handleHover}
-              logo={service.svg}
-            />
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
+    <section ref={ref} className="font-clash relative mt-[50vh]" id="services" data-bgcolor="#032F35">
+      {services.map((service, i) => {
+        const targetScale = 1 - ((services.length - i) * 0.05);
+        return <Card key={`p_${i}`} i={i} {...service} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
+
+      })}
+    </section>);
 };
 
 export default Services;
