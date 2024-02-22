@@ -27,25 +27,28 @@ const NewsItem: React.FC<NewsArticle> = ({
   });
   return (
     <motion.div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden rounded-lg shadow-lg"
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.3 }}
     >
       <img
         src={imageUrl}
         alt={title}
-        className="w-full h-64 object-cover rounded-lg"
+        className="w-full h-64 object-cover rounded-t-lg"
       />
-      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 p-4 rounded-b-lg">
-        <h3 className="text-md font-medium text-white">{title}</h3>
-        <div className="flex justify-between">
-          <span className="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </span>
-          <span className="bg- text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">
-            {formattedDate}
-          </span>
+      <div className="p-4">
+        <div className="flex space-x-2">
+          {category.split(' ').map((cat) => (
+            <span
+              key={cat}
+              className="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </span>
+          ))}
         </div>
+        <h3 className="mt-2 text-lg font-semibold text-gray-900">{title}</h3>
+        <span className="text-gray-500 text-sm">{formattedDate}</span>
       </div>
     </motion.div>
   );
@@ -199,7 +202,7 @@ const NewsGrid: React.FC = () => {
           ))}
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentItems.map((article) => (
           <NewsItem key={article.id} {...article} />
         ))}

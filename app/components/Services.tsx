@@ -18,29 +18,47 @@ const Card: React.FC<CardProps> = ({ i, title, description, url, svg: SvgCompone
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start end', 'start start']
+    offset: ['start end', 'start start'],
   });
   const scale = useTransform(progress, range, [1, targetScale]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
 
-  //const scale = useTransform(progress, range, [1, 2]);
-
+  console.log(scale, "scale")
   return (
-    <div ref={container} className="h-screen flex justify-center items-center sticky top-0 text-black">
+    <div ref={container} className="h-screen flex justify-center items-center sticky top-0 text-yellow-900">
       <motion.div
-        className="w-2/3 h-2/3 bg-white border-red-950 border-4 rounded-3xl shadow-lg p-6 m-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105"
-        style={{ marginTop: `calc(-5vh + ${i * 50}px)`, scale: scale }}
+        className="max-w-5xl w-full h-3/6 bg-secondary border-gray-300 border rounded-lg shadow-xl transition duration-500 ease-in-out hover:-translate-y-2 hover:scale-105 flex overflow-hidden"
+        style={{ marginTop: `calc(-5vh + ${i * 50}px)`, scale }}
       >
-        <div className="flex justify-center mb-4">
-          <SvgComponent className="w-6 h-6" />
+        <div className="w-3/5 flex flex-col justify-between p-6 m-6">
+            <div className="flex">
+              <SvgComponent className="w-12 h-12 " />
+
+              <h2 className="text-5xl font-semibold mx-4 mb-2">{title}</h2>
+            </div>
+            <p className="text-lg">{description}</p>
+          <div className="bg-yellow-900 py-4 px-2 rounded-full w-2/6 text-center font-medium hover:scale-105 transition duration-300 ease-in-out">
+            <a href={url} target="_blank" rel="noopener noreferrer"
+               className="text-white">See more</a>
+          </div>
         </div>
-        <h2 className="text-2xl font-bold text-center mb-4">{title}</h2>
-        <p className="text-lg mb-4">{description}</p>
-        <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out">See more</a>
+
+        <div className="w-2/5 relative m-12">
+          <motion.div
+            style={{ scale: imageScale }}
+            className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden"
+          >
+            <img
+              src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
+              className="w-full h-full object-cover"
+              alt="Dynamic"
+            />
+          </motion.div>
+        </div>
       </motion.div>
     </div>
   );
 };
-
 interface Service {
   title: string;
   description: string;
@@ -51,25 +69,25 @@ interface Service {
 const services: Service[] = [
   {
     title: 'Events',
-    description: 'We organize events to improve and promote sport in Africa.',
+    description: 'We orchestrate premier sporting events across Africa, fostering talent, unity, and global recognition. Through engaging tournaments and workshops, we aim to spotlight and elevate the continent\'s sporting scene.',
     svg: EventLogo,
     url: '/services/events',
   },
   {
     title: 'Workforces',
-    description: 'We develop young sports talent, shaping them into professionals as athletes, coaches, content creators, or trainers.',
+    description: 'Our program focuses on molding young sports enthusiasts into professionals, including athletes, coaches, and trainers. Through targeted training, we empower them with the skills needed for success in and out of the arena.',
     svg: WorkforceLogo,
     url: '/services/workforces',
   },
   {
     title: 'Health',
-    description: 'We contribute to the training of physical and mental health professionals in the field of sport.',
+    description: 'We advance physical and mental well-being in sports by training health professionals in sports medicine, psychology, and nutrition, ensuring athletes achieve peak performance and holistic health.',
     svg: HealthLogo,
     url: '/services/health',
   },
   {
     title: 'Infrastructures',
-    description: 'We support the development of high-level sports infrastructure in Africa.',
+    description: 'Committed to elevating Africa\'s sporting infrastructure, we invest in modern facilities to nurture talent, host international events, and inspire community participation, setting the stage for global competitiveness.',
     svg: InfraLogo,
     url: '/services/infrastructures',
   },
@@ -97,11 +115,11 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <section ref={ref} className="font-clash relative mt-[50vh]" id="services" data-bgcolor="#032F35">
+    <section ref={ref} className="font-clash relative mt-[50vh]" id="services">
+      <motion.h3 className="text-8xl text-center font-semibold text-primary">Our services</motion.h3>
       {services.map((service, i) => {
         const targetScale = 1 - ((services.length - i) * 0.05);
-        return <Card key={`p_${i}`} i={i} {...service} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
-
+        return <Card key={`p_${i}`} i={i} {...service} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale} />
       })}
     </section>);
 };
