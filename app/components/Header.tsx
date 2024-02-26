@@ -42,10 +42,9 @@ const Header = () => {
   };
 
   const DynamicLogo = getLogoForPath() ;
-  console.log(DynamicLogo);
 
   return (
-    <nav className="w-full z-20 top-0 left-0 fixed p-4 font-clash ">
+    <nav className="w-full z-50 top-0 left-0 fixed p-4 font-clash ">
       <div className="flex justify-between items-center">
         <Link href="/" aria-label="Home">
           <span className="cursor-pointer">

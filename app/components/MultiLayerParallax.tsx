@@ -23,7 +23,7 @@ export default function MultiLayerParallax({
   return (
     <div
       ref={ref}
-      className="w-full min-h-screen mt-44 overflow-hidden relative grid place-items-center items-center"
+      className="w-full min-h-screen overflow-hidden relative grid place-items-center items-center"
       onMouseEnter={mouseEnter}
       onMouseLeave={mouseLeave}
     >

@@ -15,11 +15,11 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
   const router = useRouter()
 
   return (
-    <section className="px-6 md:px-36 py-10 md:py-26 font-clash min-h-screen" ref={ref}>
+    <section className="px-6 py-10 md:py-26 font-clash min-h-screen relative" ref={ref}>
       <div className="flex flex-col mb-2 lg:mt-20 lg:mb-12 px-4 lg:px-16">
         <div className="flex items-center mb-12 justify-between">
-          <h2 className="text-white text-3xl lg:text-6xl pr-3 ">Latest</h2>
-          <div className="border m-4 w-full hidden lg:block"></div>
+          <h2 className="text-primary text-3xl lg:text-6xl pr-3 ">Latest</h2>
+          <div className="border m-4 w-full hidden lg:block border-primary"></div>
           <motion.button
             whileHover={{
               scale: 1,
@@ -30,7 +30,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
               router.push('/news');
             }}
             type="button"
-            className="text-white text-xxs md:text-md focus:outline-none font-medium rounded-full border-white border-2 px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
+            className="text-white bg-primary text-xxs md:text-md focus:outline-none font-medium rounded-full border-white border-2 px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
           >
             VIEW ALL
           </motion.button>

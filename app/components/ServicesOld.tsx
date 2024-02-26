@@ -162,7 +162,7 @@ const ServicesOld = () => {
     'uppercase text-3xl lg:text-8xl font-black flex-col px-6 container ';
 
   return (
-    <section ref={ref} className={sectionClassNames} id="services" data-bgcolor="#032F35">
+    <section ref={ref} className={sectionClassNames} id="services">
       <div className="flex flex-col md:flex-row items-start my-20">
         <motion.h3
           className={titleClassNames}

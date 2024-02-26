@@ -100,7 +100,7 @@ const Transition: React.FC<TransitionProps> = ({ className = '' }) => {
   const useMobileLogo = ['/', '/biography', '/career'].includes(
     router.pathname
   );
-  console.log(currentService);
+
   return (
     <motion.div
       className={`z-50 top-0 left-0 w-[100%] h-[100%] bg-primary fixed ${className}`}

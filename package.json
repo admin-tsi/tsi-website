@@ -21,6 +21,7 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@react-hook/mouse-position": "^4.1.3",
     "@studio-freight/lenis": "^1.0.35",
+    "@studio-freight/react-lenis": "^0.0.45",
     "framer-motion": "^10.17.12",
     "gsap": "^3.12.5",
     "lint-staged": "^15.2.0",
