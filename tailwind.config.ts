@@ -17,6 +17,7 @@ const config: Config = {
         accent: '#EADA9C',
         accent2: '#F2EFE6',
         neutral: '#1B1F20',
+        base: '#F7F1E3',
       },
       fontFamily: {
         clash: ['var(--clash-display-font)'],

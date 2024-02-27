@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
-import Lenis from '@studio-freight/lenis';
 
 interface CardProps {
   i: number;
@@ -46,10 +45,10 @@ const Card: React.FC<CardProps> = ({ i, title, description, url, svg: SvgCompone
 
         <div className="hidden md:block w-2/5 relative m-12">
           <motion.div
-            style={{ scale: imageScale }}
             className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden"
           >
-            <img
+            <motion.img
+              style={{ scale: imageScale }}
               src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
               className="w-full h-full object-cover"
               alt="Dynamic"

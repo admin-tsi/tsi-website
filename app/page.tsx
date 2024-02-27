@@ -7,7 +7,6 @@ import ArticleSection from '@/components/Articles';
 import { Star } from '@/utils/svgs';
 import Link from 'next/link';
 import Services from '@/components/Services';
-import Lenis from '@studio-freight/lenis';
 import Footer from '@/components/Footer';
 
 function useConditionalMouse(ref: any) {
@@ -45,7 +44,7 @@ export default function Page() {
       height: 20,
       width: 20,
       fontSize: '16px',
-      backgroundColor: 'white',
+      backgroundColor: "whitesmoke",
       mixBlendMode: 'difference',
       x: mouseXPosition,
       y: mouseYPosition,
@@ -86,7 +85,8 @@ export default function Page() {
     },
     article: {
       opacity: 1,
-      backgroundColor: '#fff',
+      mixBlendMode: 'difference',
+      backgroundColor: '#E9C168',
       border: '0.01rem solid #000',
       color: '#000',
       height: 128,
@@ -180,7 +180,7 @@ export default function Page() {
       <motion.div
         animate={controls}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="min-h-screen relative bg-[#F7F1E3]" ref={ref}
+        className="min-h-screen relative bg-base" ref={ref}
       >
         <motion.div
           // @ts-ignore
@@ -229,7 +229,6 @@ export default function Page() {
                   scale,
                   translateY,
                   translateX,
-                  transition: 'all 1s ease-in-out',
                   transformOrigin: 'right top',
                 }
                 : {}
@@ -243,7 +242,7 @@ export default function Page() {
               <motion.div
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
-                style={{ translateY, transition: 'all 1.2s ease-in-out' }}
+                style={{ translateY }}
                 transition={{ delay: 0.3, ease: easing, duration: 0.5 }}
                 className="text-2xl sm:text-3xl md:text-5xl xl:text-7xl"
               >
@@ -254,7 +253,7 @@ export default function Page() {
               <motion.div
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
-                style={{ translateY, transition: 'all 1.6s ease-in-out' }}
+                style={{ translateY }}
                 transition={{ delay: 0.6, ease: easing, duration: 0.7 }}
                 className="text-3xl sm:text-4xl md:text-6xl xl:text-8xl"
               >
@@ -265,7 +264,7 @@ export default function Page() {
               <motion.div
                 initial={{ y: 150 }}
                 animate={{ y: 0 }}
-                style={{ translateY, transition: 'all 1.8s ease-in-out' }}
+                style={{ translateY }}
                 transition={{ delay: 0.9, ease: easing, duration: 0.9 }}
                 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl"
               >
@@ -276,7 +275,7 @@ export default function Page() {
               initial={{ y: 200 }}
               animate={{ y: 0 }}
               transition={{ delay: 1, ease: easing, duration: 1.8 }}
-              style={{ translateY, transition: 'all 2.2s ease-in-out' }}
+              style={{ translateY }}
               className="text-lg font-light"
             >
               (Scroll to explore)
@@ -288,7 +287,7 @@ export default function Page() {
               <motion.h3
                 initial={{ y: 200 }}
                 animate={{ y: 0 }}
-                style={{ translateY, transition: 'all 2.2s ease-in-out' }}
+                style={{ translateY }}
                 transition={{ delay: 1, ease: easing, duration: 1.8 }}
                 className="text-xs sm:text-lg font-light"
               >
@@ -297,7 +296,7 @@ export default function Page() {
               <motion.h3
                 initial={{ y: 200 }}
                 animate={{ y: 0 }}
-                style={{ translateY, transition: 'all 2.2s ease-in-out' }}
+                style={{ translateY }}
                 transition={{ delay: 1, ease: easing, duration: 1.8 }}
                 className="text-xs sm:text-lg font-light"
               >

@@ -12,8 +12,14 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
   onMouseLeave,
 }) => {
   const ref = useRef(null);
-  const router = useRouter()
-
+  const router = useRouter();
+  const bgVariants = {
+    onscreen: { scaleY: 0,       transition: { duration: 2.5, ease: [0.22, 1, 0.36, 1] }
+    },
+    offscreen: {
+      scaleY: 1,
+    }
+  };
   return (
     <section className="px-6 py-10 md:py-26 font-clash min-h-screen relative" ref={ref}>
       <div className="flex flex-col mb-2 lg:mt-20 lg:mb-12 px-4 lg:px-16">
@@ -35,25 +41,33 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
             VIEW ALL
           </motion.button>
         </div>
-        <div
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.5 }}
         >
           <div
             className="col-span-4 md:col-span-4 lg:col-span-2 row-span-2 lg:flex-shrink-0  transform translate-x-10 opacity-0 h-[250px] lg:min-h-[375px] lg:h-auto"
             style={{ transform: 'translate(0px, 0px)', opacity: 1 }}
           >
+
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
               <img
                 src="https://images.wsj.net/im-880822/?width=1278&size=1"
                 alt="Big Article Image"
                 className="w-full object-cover h-full"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+              <motion.div
+                className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
+                variants={bgVariants}
+              ></motion.div>
+              <div className="absolute inset-0 bg-black bg-opacity-30 z-40"></div>
               <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
                 <div className="flex items-center space-x-4">
-                  <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
+                  <h4
+                    className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
                     Article
                   </h4>
                   <div
@@ -61,7 +75,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                     style={{ top: '-1px' }}
                   ></div>
                 </div>
-                <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
+                <h3
+                  className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
                   Big Article Title
                 </h3>
               </div>
@@ -75,10 +90,15 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 alt="Small Article 1 Image"
                 className="w-full object-cover h-full"
               />
+              <motion.div
+                className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
+                variants={bgVariants}
+              ></motion.div>
               <div className="absolute inset-0 bg-black bg-opacity-30"></div>
               <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
                 <div className="flex items-center space-x-4">
-                  <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
+                  <h4
+                    className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
                     Article
                   </h4>
                   <div
@@ -86,7 +106,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                     style={{ top: '-1px' }}
                   ></div>
                 </div>
-                <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none sm:text-lg md:text-xl lg:text-2xl">
+                <h3
+                  className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none sm:text-lg md:text-xl lg:text-2xl">
                   Small Article 1 Title
                 </h3>
               </div>
@@ -100,10 +121,15 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 alt="Small Article 2 Image"
                 className="w-full object-cover h-full"
               />
+              <motion.div
+                className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
+                variants={bgVariants}
+              ></motion.div>
               <div className="absolute inset-0 bg-black bg-opacity-30"></div>
               <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
                 <div className="flex items-center space-x-4">
-                  <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
+                  <h4
+                    className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
                     Article
                   </h4>
                   <div
@@ -111,7 +137,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                     style={{ top: '-1px' }}
                   ></div>
                 </div>
-                <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
+                <h3
+                  className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
                   Small Article 2 Title
                 </h3>
               </div>
@@ -125,10 +152,15 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 alt="Small Article 3 Image"
                 className="w-full object-cover h-full"
               />
+              <motion.div
+                className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
+                variants={bgVariants}
+              ></motion.div>
               <div className="absolute inset-0 bg-black bg-opacity-30"></div>
               <div className="absolute inset-0 px-4 py-6 text-white flex flex-col justify-between lg:py-4 lg:px-8 z-10">
                 <div className="flex items-center space-x-4">
-                  <h4 className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
+                  <h4
+                    className="font-bebas uppercase text-sm tracking-widest leading-6 whitespace-nowrap flex-shrink-0 sm:text-base md:text-lg lg:text-xl">
                     Article
                   </h4>
                   <div
@@ -136,13 +168,14 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                     style={{ top: '-1px' }}
                   ></div>
                 </div>
-                <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none lg:text-2xl sm:text-lg md:text-xl">
+                <h3
+                  className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none lg:text-2xl sm:text-lg md:text-xl">
                   Small Article 3 Title
                 </h3>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

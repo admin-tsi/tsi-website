@@ -49,13 +49,13 @@ const Header = () => {
         <Link href="/" aria-label="Home">
           <span className="cursor-pointer">
             {pathname.includes('/services/') ? (
-              <span className="hidden md:block mix-blend-difference">
+              <span className="hidden md:block">
                 <DynamicLogo />
               </span>
             ) : (
               <>
-                <span className="md:hidden mix-blend-difference">
-                  <MobileLogo className="text-white " />
+                <span className="md:hidden">
+                  <MobileLogo className="text-white"/>
                 </span>
                 <span className="hidden md:block">
                   <DynamicLogo />

@@ -176,13 +176,13 @@ const NewsGrid: React.FC = () => {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  const handlePrevPage = () => {
+/*  const handlePrevPage = () => {
     setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
   const handleNextPage = () => {
     setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
-  };
+  };*/
 
   return (
     <div className="container mx-auto p-4">
@@ -220,25 +220,28 @@ const NewsGrid: React.FC = () => {
 
 const NewsPage: React.FC = () => {
   return (
-    <div className="font-clash">
-      <section className="relative h-[45vh]">
-        <div className=" h-full">
-          <img
-            src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
-            alt="Ian Mahinmi"
-            className="w-screen h-full object-cover object-center"
-          />
+    <>
+      <div className="font-clash bg-base z-50">
+        <section className="relative h-[45vh]">
+          <div className=" h-full">
+            <img
+              src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
+              alt="Ian Mahinmi"
+              className="w-screen h-full object-cover object-center"
+            />
 
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4 bg-primary opacity-80">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold">All News</h1>
+            <div
+              className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4 bg-primary opacity-80">
+              <div className="text-center text-white">
+                <h1 className="text-4xl md:text-6xl font-bold">All News</h1>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <NewsGrid />
+        </section>
+        <NewsGrid />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
