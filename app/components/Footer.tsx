@@ -1,11 +1,14 @@
-"use client";
+'use client';
 import React from 'react';
 import { MobileLogo } from '@/utils/svgs';
 import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary text-white py-6 font-clash sticky bottom-0 -z-10" id="contact">
+    <footer
+      className="bg-primary text-white py-6 font-clash sticky bottom-0 -z-10"
+      id="contact"
+    >
       <div className="mx-auto px-4 flex flex-col">
         <div className="flex flex-col">
           <h1 className="text-slate-300 text-xs uppercase mb-4">

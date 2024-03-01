@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -77,12 +77,12 @@ const Page: React.FC = () => {
   // Sample data with multiple images for events
   const imageData: Event[] = [
     {
-      imgs: [One, Two].map((img) => img.src), // Convert to src strings if using module imports
+      imgs: [One, Two].map(img => img.src), // Convert to src strings if using module imports
       title: 'Event Title 1',
       description: 'Event Description 1',
     },
     {
-      imgs: [Two].map((img) => img.src), // Single image event for comparison
+      imgs: [Two].map(img => img.src), // Single image event for comparison
       title: 'Event Title 2',
       description: 'Event Description 2',
     },
@@ -150,12 +150,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, fadeInUp }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % event.imgs.length);
+    setCurrentImageIndex(prevIndex => (prevIndex + 1) % event.imgs.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? event.imgs.length - 1 : prevIndex - 1
+    setCurrentImageIndex(prevIndex =>
+      prevIndex === 0 ? event.imgs.length - 1 : prevIndex - 1,
     );
   };
 

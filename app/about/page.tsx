@@ -1,50 +1,132 @@
 "use client";
 
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Footer from '@/components/Footer';
-import One from '../../public/biography/1.jpg';
+import React, { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Footer from "@/components/Footer";
+import JobItem from "@/components/JobItem";
+import TeamMemberModal, { TeamMember } from "@/components/TeamMember";
 
 export default function Page() {
   const teamMembers = [
     {
-      name: 'Ian Mahinmi',
-      role: 'Captain & Treasure Hunter',
+      name: "Ian Mahinmi",
+      role: "Coach & CEO",
       description:
-        'Creates tile jewels, devises a solution to every problem and gets to the bottom of any question until he strikes gold.',
-      imgSrc: One,
+        "Creates tile jewels, devises a solution to every problem and gets to the bottom of any question until he strikes gold.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
     },
     {
-      name: 'Sebastian Rauch',
-      role: 'Captain & Star Navigator',
+      name: "Xena Arisa",
+      role: "Goalkeeper & Executive Assistant",
       description:
-        'Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.',
-      imgSrc: One,
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
     },
     {
-      name: 'Anne Hofmann',
-      role: 'Co-Captain & Helmswoman',
+      name: "Emile Epaminondas",
+      role: "Defender & Backend Developer",
       description:
-        'Consults, designs and navigates. Steers order processing with patience and composure and keeps the ship on course.',
-      imgSrc: One,
+        "Consults, designs and navigates. Steers order processing with patience and composure and keeps the ship on course.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Stanlay Hounnouvi",
+      role: "Defender & Fullstack Developer",
+      description:
+        "Designs and navigates. He is the one who keeps the ship on course and ensures that the crew is always in good spirits.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Jordan Vitou",
+      role: "Offensive Midfielder & Tech Lead",
+      description:
+        "Designs and navigates. He is the one who keeps the ship on course and ensures that the crew is always in good spirits.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Elikem Medehou",
+      role: "Box-to-Box Midfielder & Head of Digital Conception",
+      description:
+        "Creates tile jewels, devises a solution to every problem and gets to the bottom of any question until he strikes gold.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Esperanza Kounde",
+      role: "Left Winger & Creative 3D Designer",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Précieux Dagba",
+      role: "Right Winger & Graphic Designer/UI Designer",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Espérat Dimon",
+      role: "Right Striker & Frontend Developer",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Ibrahim Fikara",
+      role: "Center Forward & Marketing Manager",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Jerry Boko",
+      role: "Right Striker & Visual content creator",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+    },
+    {
+      name: "Jerry Boko",
+      role: "Captain & Star Navigator",
+      description:
+        "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
+      imgSrc:
+        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
     },
   ];
 
   const companyValues = [
     {
-      title: 'Integrity',
+      title: "Tradition",
       description:
-        'We adhere to the highest ethical standards, ensuring our work is always trustworthy and honorable.',
+        "Honoring our roots and culture in every endeavor, we tirelessly strive to blend tradition with modern innovation for a richer legacy.",
+      imgSrc:
+        "https://blog.olivierlarose.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F7.6ae8015e.jpeg&w=2048&q=75",
     },
     {
-      title: 'Innovation',
+      title: "Finesse",
       description:
-        'We constantly seek new and creative solutions to challenges, pushing the boundaries of what is possible.',
+        "Striving for excellence in execution and delivery, we ensure every project surpasses expectations with unmatched quality and precision.",
+      imgSrc:
+        "https://blog.olivierlarose.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F3.d5b577c3.jpg&w=2048&q=75",
     },
     {
-      title: 'Excellence',
+      title: "Innovation",
       description:
-        'We strive for excellence in everything we do, from our services to our customer relationships.',
+        "Pioneering the Future of African Sports and Entertainment, leading with innovation and creativity, setting new industry standards.",
+      imgSrc:
+        "https://blog.olivierlarose.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F3.d5b577c3.jpg&w=2048&q=75",
     },
   ];
 
@@ -52,36 +134,50 @@ export default function Page() {
 
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start end', 'start start'],
+    offset: ["start end", "end end"],
   });
 
-  const imageScale = useTransform(scrollYProgress, [1, 0], [1.5, 1]);
+  const imageScale = useTransform(scrollYProgress, [1, 0], [1.5, 1.2]);
+
+  const companyValuesWithAnimation = companyValues.map((value, index) => ({
+    ...value,
+  }));
+
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  // Function to handle opening the modal
+  const handleOpenModal = (member: TeamMember) => {
+    setSelectedMember(member);
+  };
+
+  // Function to handle closing the modal
+  const handleCloseModal = () => {
+    setSelectedMember(null);
+  };
 
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      exit={{ opacity: 0 }}
-    >
-      <div className="font-clash z-50 bg-base">
-        <section className="px-6 md:px-16 py-10 md:py-26 font-clash my-48">
-          <div className=" mx-auto flex justify-between text-primary">
-            <div className="flex-1">
-              <h2 className="text-2xl font-semibold uppercase tracking-wide">
-                About TSI
+    <motion.div initial="initial" animate="animate" exit={{ opacity: 0 }}>
+      <div className="font-clash z-50 bg-base overflow-hidden">
+        <section className="px-4 sm:px-6 py-10 md:py-26 font-clash my-12 md:my-48">
+          <div className="mx-auto flex flex-col md:flex-row justify-between text-black">
+            <div className="md:flex-1 mb-6 md:mb-0">
+              <h2 className="text-xl md:text-2xl font-medium uppercase italic tracking-wide">
+                About
+                <span className="font-cinzel italic font-medium px-2">TSI</span>
               </h2>
             </div>
-            <div className="w-1/2">
-              <h1 className="text-5xl font-semibold leading-tight mb-6">
-                Waving the TSI flag and doing big things since 2020.
+            <div className="md:w-1/2">
+              <h1 className="text-2xl md:text-4xl font-semibold leading-tight mb-6">
+                Waving the TSI flag and building towards big achievements since
+                2023.
               </h1>
-              <p className="text-lg">
-                Our mission at TSI is to foster the growth of the sports industry
-                in Benin and Africa, emphasizing innovation and excellence. Join
-                us in shaping the future of African sports.Our mission at TSI is
-                to foster the growth of the sports industry in Benin and Africa,
-                emphasizing innovation and excellence. Join us in shaping the
-                future of African sports.
+              <p className="md:text-lg font-thin">
+                TSI is committed to revolutionizing the sports industry in Benin
+                and throughout Africa. Our goal is to ignite innovation and
+                pursue excellence, driving forward the development and
+                visibility of African sports. We welcome you to join us on this
+                ambitious journey, as we work together to forge a new future for
+                African sports.
               </p>
               <div className="mt-6">
                 <a href="#" className="underline font-semibold">
@@ -92,72 +188,119 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="px-6 md:px-16 py-10 md:py-26 font-clash my-48 text-primary values" ref={container}>
-          <h2 className="text-6xl font-medium mb-4">
-            We're a team driven by conviction. These are our people and their
-            stories.
+        <section
+          className="px-4 sm:px-6 py-10 md:py-26 font-clash my-12 md:my-48 text-black values"
+          ref={container}
+        >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium mb-4">
+            Our passion binds us, driven by shared conviction. Here are our team
+            members—their unique personalities embody our collective spirit.
           </h2>
-          <div className="flex flex-col items-center justify-center  ">
-            <motion.div
-              className=" w-full h-[60vh] flex items-center justify-center overflow-hidden m-6"
-            >
+          <div className="flex flex-col items-center justify-center">
+            <motion.div className="w-full h-auto md:h-[70vh] flex items-center justify-center overflow-hidden m-6 md:m-12 px-4 md:px-24">
               <motion.img
                 style={{ scale: imageScale }}
-                src="https://thetournament.com/wp-content/uploads/2023/08/Screenshot-2023-08-01-at-5.59.00-PM.png"
-                className="w-2/3 object-cover"
+                src="https://niftic.com/images/internal/team_niftic_chicago.png"
+                className="w-full object-cover md:object-fill"
                 alt="Dynamic"
               />
             </motion.div>
           </div>
-          <div className="flex items-center justify-center mt-12">
-            <h2 className="text-6xl font-medium mb-4">Our Core Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
-              {companyValues.map((value, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center text-center"
-                >
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                    {value.title}
-                  </h3>
-                  <p className="text-base text-gray-500">{value.description}</p>
-                </div>
-              ))}
+          <div className="py-6 md:py-12">
+            <div className="flex flex-col md:flex-row justify-between">
+              <h2 className="text-md font-medium text-gray-900 mb-6 md:mb-10 italic uppercase">
+                Our <span className="font-cinzel">Values</span>
+              </h2>
+              <h2 className="text-xl font-thin text-gray-900 md:w-1/2 mb-6 md:mb-10">
+                Guided by three foundational pillars, our mission at Tailoring
+                Sports Investments (TSI) is to revolutionize the sports
+                landscape in Africa. These principles deeply influence our
+                strategy, shaping every project we embark on. By combining depth
+                with precision and a visionary approach, we embed our efforts
+                with a profound commitment.
+              </h2>
             </div>
-          </div>
-        </section>
-        <section>
-          <div className="py-12">
-            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {teamMembers.map((member, index) => (
+            <div>
+              <div className="flex flex-col">
+                {companyValuesWithAnimation.map((value, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                    className="flex flex-col items-center text-center"
+                    className="flex flex-col md:flex-row group"
                   >
-                    <img
-                      className="w-full object-cover mx-auto"
-                      src={member.imgSrc.src}
-                      alt={member.name}
-                    />
-                    <h3 className="mt-4 text-xl font-semibold text-gray-900">
-                      {member.name}
-                    </h3>
-                    <h4 className="mt-2 text-sm text-gray-600">{member.role}</h4>
-                    <p className="mt-3 text-base text-gray-500">
-                      {member.description}
-                    </p>
+                    <div className="w-full md:w-1/3 flex items-center justify-center p-4">
+                      <motion.img
+                        src={value.imgSrc}
+                        alt={value.title}
+                        className="max-w-full h-64 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                      />
+                    </div>
+
+                    <div className="w-full md:w-2/3 flex flex-col justify-center border-t border-black">
+                      <div>
+                        <h2 className="font-cinzel pl-4 md:pl-0">
+                          {"0" + (index + 1)}
+                        </h2>
+                        <h2 className="text-4xl md:text-8xl font-medium pl-4 md:pl-0">
+                          {value.title}
+                        </h2>
+                      </div>
+                      <motion.h6 className="text-gray-500 text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out pl-4 md:pl-0">
+                        {value.description}
+                      </motion.h6>
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
         </section>
+
+        <section className="text-black py-12 px-4">
+          <div className="flex justify-between">
+            <h2 className="text-5xl mb-32 uppercase">
+              Meet our{" "}
+              <span className="italic font-cinzel font-thin">Visionaries</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container ml-auto">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="space-y-2 hover:cursor-pointer transition duration-300 ease-in-out hover:scale-105"
+                onClick={() => handleOpenModal(member)}
+              >
+                <img
+                  src={member.imgSrc}
+                  alt={member.name}
+                  className="w-full h-5/6 object-cover"
+                />
+                <p className="text-sm font-medium uppercase font-cinzel">
+                  {member.name}
+                </p>
+                <p className="text-xs text-gray-600">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="p-4 md:p-12 lg:m-4 text-black mt-8">
+          <div className="text-xl mb-8">
+            <h1 className="font-thin font-cinzel">Career</h1>
+          </div>
+          <JobItem
+            number=""
+            title="Digiatal experience designer"
+            description="16/04/24"
+          />
+          <JobItem
+            number=""
+            title="Frontend developer"
+            description="View Job"
+          />
+          <JobItem number="" title="Backend developer" description="16/04/24" />
+        </section>
       </div>
-      <Footer/>
+      <TeamMemberModal member={selectedMember} onClose={handleCloseModal} />
+      <Footer />
     </motion.div>
   );
 }

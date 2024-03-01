@@ -7,13 +7,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
 
 body {
-  background-color: #F7F1E3;
+  background-color: #f7f1e3;
 }
 
 body {
@@ -44,7 +45,8 @@ video {
 ::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 4px;
-  max-height: 50%; height: 50%;
+  max-height: 50%;
+  height: 50%;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -52,11 +54,16 @@ video {
 }
 
 .glob-hover {
-  background-size: 100% 100%, 0 100%;
+  background-size:
+    100% 100%,
+    0 100%;
   -webkit-text-fill-color: transparent;
-  background-image: url("../../public/white.jpg"), url("../../public/secondary.png");
-  background-position: 100% 0,0 0;
-  background-repeat: no-repeat,no-repeat;
+  background-image: url('../../public/white.jpg'),
+    url('../../public/secondary.png');
+  background-position:
+    100% 0,
+    0 0;
+  background-repeat: no-repeat, no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   transition: background-size 2s ease-in;
@@ -64,15 +71,19 @@ video {
 
 .glob-hover:hover {
   -webkit-text-fill-color: transparent;
-  background-image: url("../../public/white.jpg"), url("../../public/secondary.png");
-  background-position: 100% 0,0 0;
-  background-repeat: no-repeat,no-repeat;
-  background-size: 0 100%, 100% 100%;
+  background-image: url('../../public/white.jpg'),
+    url('../../public/secondary.png');
+  background-position:
+    100% 0,
+    0 0;
+  background-repeat: no-repeat, no-repeat;
+  background-size:
+    0 100%,
+    100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   transition: background-size 2s ease-in;
 }
-
 
 .rotate-vert-center {
   animation: rotate-vert-center 2s ease-in-out infinite both;
@@ -116,7 +127,7 @@ video {
 }
 
 .scroll-reveal span {
-  color: hsl(0, 0%, 55%, .5);
+  color: hsl(0, 0%, 55%, 0.5);
   background-clip: text;
   background-repeat: no-repeat;
   background-size: 0 100%;
@@ -126,8 +137,8 @@ video {
 }
 
 .scroll-reveal span span {
-  color: rgb(194 65 12)!important;
-  background-image: none!important;
+  color: rgb(194 65 12) !important;
+  background-image: none !important;
 }
 .scroll-reveal p span {
   animation-range-start: cover 60vh;
@@ -141,7 +152,7 @@ video {
 }
 
 .gradient-link {
-  background: linear-gradient(45deg, #316C45, #A8303A, #D7B747, #313C74);
+  background: linear-gradient(45deg, #316c45, #a8303a, #d7b747, #313c74);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline;

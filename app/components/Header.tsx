@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import {
@@ -35,13 +35,11 @@ const Header = () => {
   ];
 
   const getLogoForPath = () => {
-    const service = services.find((service) =>
-      pathname.includes(service.path)
-    );
+    const service = services.find(service => pathname.includes(service.path));
     return service ? service.svg : Logo;
   };
 
-  const DynamicLogo = getLogoForPath() ;
+  const DynamicLogo = getLogoForPath();
 
   return (
     <nav className="w-full z-50 top-0 left-0 fixed p-4 font-clash ">
@@ -55,7 +53,7 @@ const Header = () => {
             ) : (
               <>
                 <span className="md:hidden">
-                  <MobileLogo className="text-white"/>
+                  <MobileLogo className="text-white" />
                 </span>
                 <span className="hidden md:block">
                   <DynamicLogo />

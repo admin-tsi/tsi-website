@@ -22,7 +22,7 @@ const Pagination: React.FC<{
             Previous
           </button>
         </li>
-        {pageNumbers.map((number) => (
+        {pageNumbers.map(number => (
           <li key={number}>
             <button
               onClick={() => onPageChange(number)}

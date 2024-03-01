@@ -98,7 +98,7 @@ const Transition: React.FC<TransitionProps> = ({ className = '' }) => {
 
   const currentService = router.pathname.replace('/services/', '');
   const useMobileLogo = ['/', '/biography', '/career'].includes(
-    router.pathname
+    router.pathname,
   );
 
   return (

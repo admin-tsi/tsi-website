@@ -1,12 +1,12 @@
 "use client";
-import React, { useState, useEffect, MouseEvent } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Star } from '@/utils/svgs';
-import { usePathname } from 'next/navigation'; // Correctly importing useRouter
+import React, { MouseEvent, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Star } from "@/utils/svgs";
+import { usePathname } from "next/navigation"; // Correctly importing useRouter
 
 // Define a type for the name of each menu item
-type MenuItemName = 'Home' | 'About' | 'Services' | 'News' | 'Contacts';
+type MenuItemName = "Home" | "About" | "Services" | "News" | "Contacts";
 
 // Define the structure of each menu item
 type MenuItem = {
@@ -22,19 +22,19 @@ const Menu: React.FC = () => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
   }, [isOpen]);
 
   const menuVariants = {
     open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: '-100%' },
+    closed: { opacity: 0, x: "-100%" },
   };
 
   const transition = {
-    type: 'spring',
+    type: "spring",
     stiffness: 100,
     damping: 20,
   };
@@ -61,7 +61,7 @@ const Menu: React.FC = () => {
     hoverStart: {
       opacity: 1,
       scale: 1.1,
-      transition: { type: 'spring', stiffness: 300, damping: 20 },
+      transition: { type: "spring", stiffness: 300, damping: 20 },
     },
     hoverEnd: {
       opacity: 0,
@@ -72,19 +72,19 @@ const Menu: React.FC = () => {
 
   // Define floating texts with the specific type for keys
   const floatingTexts: Record<MenuItemName, string> = {
-    Home: 'Welcome',
-    About: 'What defines us',
-    Services: 'What We Offer',
-    News: 'Latest news',
-    Contacts: 'Get in Touch',
+    Home: "Welcome",
+    About: "What defines us",
+    Services: "What We Offer",
+    News: "Latest news",
+    Contacts: "Get in Touch",
   };
 
   const menuItems: MenuItem[] = [
-    { name: 'Home', url: '/' },
-    { name: 'About', url: '/about' },
-    { name: 'Services', url: '/#services' },
-    { name: 'News', url: '/news' },
-    { name: 'Contacts', url: '/contacts' },
+    { name: "Home", url: "/" },
+    { name: "About", url: "/about" },
+    { name: "Services", url: "/#services" },
+    { name: "News", url: "/news" },
+    { name: "Contacts", url: "/contacts" },
   ];
 
   return (
@@ -100,7 +100,7 @@ const Menu: React.FC = () => {
 
       <motion.nav
         initial="closed"
-        animate={isOpen ? 'open' : 'closed'}
+        animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
         transition={transition}
         className="fixed top-0 left-0 w-full h-full bg-primary text-white z-50 flex flex-col justify-center items-center font-clash"
@@ -125,8 +125,8 @@ const Menu: React.FC = () => {
                 hoveredItem === null ||
                 hoveredItem === index ||
                 pathname === item.url
-                  ? 'default'
-                  : 'dimmed'
+                  ? "default"
+                  : "dimmed"
               }
               className="mb-4 relative"
             >
@@ -139,8 +139,8 @@ const Menu: React.FC = () => {
               {hoveredItem === index && (
                 <motion.span
                   style={{
-                    position: 'absolute',
-                    left: '110%',
+                    position: "absolute",
+                    left: "110%",
                     top: mouseYPosition,
                   }}
                   variants={floatingTextVariants}
@@ -161,8 +161,8 @@ const Menu: React.FC = () => {
               className="px-4 py-2 rounded-full border  flex items-center justify-center min-w-[100px] h-10"
               whileHover={{
                 scale: 1.1,
-                transition: { ease: 'easeInOut', duration: 0.5 },
-                backgroundColor: '#E9C168',
+                transition: { ease: "easeInOut", duration: 0.5 },
+                backgroundColor: "#E9C168",
               }}
             >
               <a href="https://www.facebook.com/people/Tailoring-Sports-Investments/61554677080597/?mibextid=%22%22">
@@ -173,8 +173,8 @@ const Menu: React.FC = () => {
               className="px-4 py-2 rounded-full border  flex items-center justify-center min-w-[100px] h-10"
               whileHover={{
                 scale: 1.1,
-                transition: { ease: 'easeInOut', duration: 0.5 },
-                backgroundColor: '#E9C168',
+                transition: { ease: "easeInOut", duration: 0.5 },
+                backgroundColor: "#E9C168",
               }}
             >
               <a href="https://www.instagram.com/tailoringsports">Instagram</a>
@@ -183,8 +183,8 @@ const Menu: React.FC = () => {
               className="px-4 py-2 rounded-full border  text-center flex items-center justify-center min-w-[100px] h-10"
               whileHover={{
                 scale: 1.1,
-                transition: { ease: 'easeInOut', duration: 0.5 },
-                backgroundColor: '#E9C168',
+                transition: { ease: "easeInOut", duration: 0.5 },
+                backgroundColor: "#E9C168",
               }}
             >
               X/Twitter
@@ -193,8 +193,8 @@ const Menu: React.FC = () => {
               className="px-4 py-2 rounded-full border  text-center flex items-center justify-center min-w-[100px] h-10"
               whileHover={{
                 scale: 1.1,
-                transition: { ease: 'easeInOut', duration: 0.5 },
-                backgroundColor: '#E9C168',
+                transition: { ease: "easeInOut", duration: 0.5 },
+                backgroundColor: "#E9C168",
               }}
             >
               <a href="https://www.linkedin.com/company/tailoring-sports-investments/">

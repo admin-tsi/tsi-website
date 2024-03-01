@@ -1,13 +1,19 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { cubicBezier, motion, useAnimation, useScroll, useTransform } from 'framer-motion';
-import useMouse from '@react-hook/mouse-position';
-import MultiLayerParallax from '@/components/MultiLayerParallax';
-import ArticleSection from '@/components/Articles';
-import { Star } from '@/utils/svgs';
-import Link from 'next/link';
-import Services from '@/components/Services';
-import Footer from '@/components/Footer';
+import React, { useEffect, useState } from "react";
+import {
+  cubicBezier,
+  motion,
+  useAnimation,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import useMouse from "@react-hook/mouse-position";
+import MultiLayerParallax from "@/components/MultiLayerParallax";
+import ArticleSection from "@/components/Articles";
+import { Star } from "@/utils/svgs";
+import Link from "next/link";
+import Services from "@/components/Services";
+import Footer from "@/components/Footer";
 
 function useConditionalMouse(ref: any) {
   return useMouse(ref, {
@@ -19,8 +25,8 @@ export default function Page() {
   const controls = useAnimation();
 
   let easing = [0.6, -0.05, 0.01, 0.99];
-  const [cursorVariant, setCursorVariant] = useState('default');
-  const [cursorText, setCursorText] = useState('');
+  const [cursorVariant, setCursorVariant] = useState("default");
+  const [cursorText, setCursorText] = useState("");
 
   const ref = React.useRef(null);
 
@@ -43,13 +49,13 @@ export default function Page() {
       opacity: 1,
       height: 20,
       width: 20,
-      fontSize: '16px',
+      fontSize: "16px",
       backgroundColor: "whitesmoke",
-      mixBlendMode: 'difference',
+      mixBlendMode: "difference",
       x: mouseXPosition,
       y: mouseYPosition,
       transition: {
-        type: 'spring',
+        type: "spring",
         mass: 0.6,
       },
     },
@@ -57,14 +63,14 @@ export default function Page() {
       opacity: 1,
       height: 30,
       width: 60,
-      fontSize: '14px',
-      textTransform: 'uppercase',
-      textColor: 'white',
-      backgroundColor: '#E9C168',
+      fontSize: "14px",
+      textTransform: "uppercase",
+      textColor: "white",
+      backgroundColor: "#E9C168",
       x: mouseXPosition,
       y: mouseYPosition,
       transition: {
-        type: 'spring',
+        type: "spring",
         mass: 0.6,
       },
     },
@@ -72,49 +78,49 @@ export default function Page() {
       opacity: 1,
       height: 30,
       width: 90,
-      fontSize: '14px',
-      textTransform: 'uppercase',
-      textColor: 'white',
-      backgroundColor: '#E9C168',
+      fontSize: "14px",
+      textTransform: "uppercase",
+      textColor: "white",
+      backgroundColor: "#E9C168",
       x: mouseXPosition,
       y: mouseYPosition,
       transition: {
-        type: 'spring',
+        type: "spring",
         mass: 0.6,
       },
     },
     article: {
       opacity: 1,
-      mixBlendMode: 'difference',
-      backgroundColor: '#E9C168',
-      border: '0.01rem solid #000',
-      color: '#000',
+      mixBlendMode: "difference",
+      backgroundColor: "gray",
+      border: "0.01rem solid #000",
+      color: "#000",
       height: 128,
       width: 128,
-      fontSize: '32px',
+      fontSize: "32px",
       x: mouseXPosition !== null ? mouseXPosition - 48 : 0,
       y: mouseYPosition !== null ? mouseYPosition - 48 : 0,
     },
     image: {
       opacity: 1,
-      height: '5rem', // Set the height as needed
-      width: '5rem', // Set the width as needed
-      backgroundColor: '#fff',
+      height: "5rem", // Set the height as needed
+      width: "5rem", // Set the width as needed
+      backgroundColor: "#fff",
       x: mouseXPosition,
       y: mouseYPosition,
       backgroundImage: "url('ian_tradi.png')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      borderRadius: '9999px', // for rounded image
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      borderRadius: "9999px", // for rounded image
       transition: {
-        type: 'spring',
+        type: "spring",
         mass: 0.6,
       },
     },
   };
 
   const spring = {
-    type: 'spring',
+    type: "spring",
     stiffness: 500,
     damping: 28,
   };
@@ -131,7 +137,7 @@ export default function Page() {
 
   const { scrollY } = useScroll({
     target: ref,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   const translateY = useTransform(scrollY, [200, 800], [0, 1050], {
@@ -169,10 +175,10 @@ export default function Page() {
     handleResize();
 
     // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Clean up event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -180,7 +186,8 @@ export default function Page() {
       <motion.div
         animate={controls}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="min-h-screen relative bg-base" ref={ref}
+        className="min-h-screen relative bg-base"
+        ref={ref}
       >
         <motion.div
           // @ts-ignore
@@ -213,8 +220,8 @@ export default function Page() {
 
         <section
           className="relative flex items-center min-h-screen bg-cover bg-center font-clash z-40"
-          onMouseEnter={() => mouseEnter('play', 'play')}
-          onMouseLeave={() => mouseLeave('', 'default')}
+          onMouseEnter={() => mouseEnter("play", "play")}
+          onMouseLeave={() => mouseLeave("", "default")}
           onClick={openModal}
         >
           <motion.video
@@ -226,18 +233,17 @@ export default function Page() {
             style={
               largeScreen > 768
                 ? {
-                  scale,
-                  translateY,
-                  translateX,
-                  transformOrigin: 'right top',
-                }
+                    scale,
+                    translateY,
+                    translateX,
+                    transformOrigin: "right top",
+                  }
                 : {}
             }
           >
             <source src="hero.mp4" type="video/mp4" />
           </motion.video>
-          <div
-            className="mix-blend-difference text-white font-bold text-center w-full left-1/2 -translate-x-1/2 absolute uppercase overflow-hidden bottom-0 mb-12 font-clash">
+          <div className="mix-blend-difference text-white font-bold text-center w-full left-1/2 -translate-x-1/2 absolute uppercase overflow-hidden bottom-0 mb-12 font-clash">
             <div className="overflow-hidden">
               <motion.div
                 initial={{ y: 100 }}
@@ -281,8 +287,7 @@ export default function Page() {
               (Scroll to explore)
             </motion.h3>
           </div>
-          <div
-            className="mix-blend-screen text-lg text-white font-normal absolute bottom-0 p-4 font-clash w-full">
+          <div className="mix-blend-screen text-lg text-white font-normal absolute bottom-0 p-4 font-clash w-full">
             <div className="overflow-hidden flex justify-between">
               <motion.h3
                 initial={{ y: 200 }}
@@ -315,38 +320,37 @@ export default function Page() {
             </div>
             <div className="scroll-reveal">
               <p className="text-2xl lg:text-4xl mr-12 w-full md:w-3/4">
-              <span className="here">
-                Welcome to TAILORING SPORTS INVESTMENTS (TSI), founded in August
-                2023 by{' '}
-                <span
-                  className="font-semibold cursor-pointer animate-pulse"
-                  onMouseEnter={() => mouseEnter('', 'image')}
-                  onMouseLeave={() => mouseLeave('', 'default')}
-                >
-                  <Link href="/biography/page">Ian Mahinmi</Link>
+                <span className="here">
+                  Welcome to TAILORING SPORTS INVESTMENTS (TSI), founded in
+                  August 2023 by{" "}
+                  <span
+                    className="font-semibold cursor-pointer animate-pulse"
+                    onMouseEnter={() => mouseEnter("", "image")}
+                    onMouseLeave={() => mouseLeave("", "default")}
+                  >
+                    <Link href="/biography/page">Ian Mahinmi</Link>
+                  </span>
+                  , a seasoned entrepreneur and athlete with over 20 years of
+                  experience in NBA and the FIBA. Our mission at TSI is to
+                  foster the growth of the sports industry in Benin and Africa,
+                  emphasizing innovation and excellence. Join us in shaping the
+                  future of African sports.
                 </span>
-                , a seasoned entrepreneur and athlete with over 20 years of
-                experience in NBA and the FIBA. Our mission at TSI is to foster
-                the growth of the sports industry in Benin and Africa,
-                emphasizing innovation and excellence. Join us in shaping the
-                future of African sports.
-              </span>
               </p>
             </div>
           </div>
         </section>
         <Services />
         <ArticleSection
-          onMouseEnter={() => mouseEnter('View', 'article')}
-          onMouseLeave={() => mouseLeave('', 'default')}
+          onMouseEnter={() => mouseEnter("View", "article")}
+          onMouseLeave={() => mouseLeave("", "default")}
         />
         <MultiLayerParallax
-          mouseEnter={() => mouseEnter('Lets talk', 'talk')}
-          mouseLeave={() => mouseLeave('', 'default')}
+          mouseEnter={() => mouseEnter("Lets talk", "talk")}
+          mouseLeave={() => mouseLeave("", "default")}
         />
       </motion.div>
-      <Footer/>
+      <Footer />
     </div>
-
   );
 }

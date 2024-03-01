@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useAnimation,
+  useInView,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
 import Link from 'next/link';
 
@@ -13,17 +19,17 @@ interface ServiceSectionProps {
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
-                                           title,
-                                           description,
-                                           isActive,
-                                           onHover,
-                                           logo: Logos,
-                                           url,
-                                         }) => {
+  title,
+  description,
+  isActive,
+  onHover,
+  logo: Logos,
+  url,
+}) => {
   const controls = useAnimation();
   // Declaration of ref and inView should be directly inside the component function
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-100px' });
 
   useEffect(() => {
     if (inView) {
@@ -88,7 +94,6 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   );
 };
 
-
 const ServicesOld = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -118,7 +123,7 @@ const ServicesOld = () => {
   const h3Y = useTransform(
     scrollYProgress,
     [0, 1],
-    [-viewportSize.height / 2, viewportSize.height / 2]
+    [-viewportSize.height / 2, viewportSize.height / 2],
   );
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
 
@@ -166,7 +171,7 @@ const ServicesOld = () => {
       <div className="flex flex-col md:flex-row items-start my-20">
         <motion.h3
           className={titleClassNames}
-          style={viewportSize.width > 1024 ? { y: h3Y} : {}}
+          style={viewportSize.width > 1024 ? { y: h3Y } : {}}
         >
           Services
         </motion.h3>
@@ -174,7 +179,7 @@ const ServicesOld = () => {
           className={servicesClassNames}
           style={viewportSize.width > 1024 ? { y: textY } : {}}
         >
-          {services.map((service) => (
+          {services.map(service => (
             <ServiceSection
               url={service.url}
               key={service.title}
