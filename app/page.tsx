@@ -7,133 +7,26 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import useMouse from "@react-hook/mouse-position";
 import MultiLayerParallax from "@/components/MultiLayerParallax";
 import ArticleSection from "@/components/Articles";
 import { Star } from "@/utils/svgs";
 import Link from "next/link";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import { useCustomCursor, useCustomMouse } from "@/hook/useConditionalMouse";
 
-function useConditionalMouse(ref: any) {
-  return useMouse(ref, {
-    enterDelay: 100,
-    leaveDelay: 100,
-  });
-}
 export default function Page() {
   const controls = useAnimation();
 
   let easing = [0.6, -0.05, 0.01, 0.99];
-  const [cursorVariant, setCursorVariant] = useState("default");
-  const [cursorText, setCursorText] = useState("");
 
   const ref = React.useRef(null);
 
-  let mouseXPosition: number | null = 0;
-  let mouseYPosition: number | null = 0;
+  const { mouseXPosition, mouseYPosition } = useCustomMouse(ref);
 
-  // @ts-ignore
-  const mouse = useConditionalMouse(ref);
-
-  if (mouse.x !== null) {
-    mouseXPosition = mouse.clientX;
-  }
-
-  if (mouse.y !== null) {
-    mouseYPosition = mouse.clientY;
-  }
-
-  const variants = {
-    default: {
-      opacity: 1,
-      height: 20,
-      width: 20,
-      fontSize: "16px",
-      backgroundColor: "whitesmoke",
-      mixBlendMode: "difference",
-      x: mouseXPosition,
-      y: mouseYPosition,
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-    play: {
-      opacity: 1,
-      height: 30,
-      width: 60,
-      fontSize: "14px",
-      textTransform: "uppercase",
-      textColor: "white",
-      backgroundColor: "#E9C168",
-      x: mouseXPosition,
-      y: mouseYPosition,
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-    talk: {
-      opacity: 1,
-      height: 30,
-      width: 90,
-      fontSize: "14px",
-      textTransform: "uppercase",
-      textColor: "white",
-      backgroundColor: "#E9C168",
-      x: mouseXPosition,
-      y: mouseYPosition,
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-    article: {
-      opacity: 1,
-      mixBlendMode: "difference",
-      backgroundColor: "gray",
-      border: "0.01rem solid #000",
-      color: "#000",
-      height: 128,
-      width: 128,
-      fontSize: "32px",
-      x: mouseXPosition !== null ? mouseXPosition - 48 : 0,
-      y: mouseYPosition !== null ? mouseYPosition - 48 : 0,
-    },
-    image: {
-      opacity: 1,
-      height: "5rem", // Set the height as needed
-      width: "5rem", // Set the width as needed
-      backgroundColor: "#fff",
-      x: mouseXPosition,
-      y: mouseYPosition,
-      backgroundImage: "url('ian_tradi.png')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      borderRadius: "9999px", // for rounded image
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-  };
-
-  const spring = {
-    type: "spring",
-    stiffness: 500,
-    damping: 28,
-  };
-
-  function mouseEnter(text: string, variants: string) {
-    setCursorText(text);
-    setCursorVariant(variants);
-  }
-
-  function mouseLeave(text: string, variant: string) {
-    setCursorText(text);
-    setCursorVariant(variant);
-  }
+  const { cursorVariant, cursorText, mouseEnter, mouseLeave } =
+    useCustomCursor();
 
   const { scrollY } = useScroll({
     target: ref,
@@ -157,7 +50,6 @@ export default function Page() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to open the modal
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -189,16 +81,12 @@ export default function Page() {
         className="min-h-screen relative bg-base"
         ref={ref}
       >
-        <motion.div
-          // @ts-ignore
-          variants={variants}
-          className="circle"
-          animate={cursorVariant}
-          transition={spring}
-        >
-          <span className="cursorText font-clash z-50 ">{cursorText}</span>
-        </motion.div>
-
+        <CustomCursor
+          cursorText={cursorText}
+          cursorVariant={cursorVariant}
+          mouseXPosition={mouseXPosition}
+          mouseYPosition={mouseYPosition}
+        />
         {isModalOpen && (
           <motion.div
             className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"

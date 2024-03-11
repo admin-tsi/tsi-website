@@ -5,6 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Footer from "@/components/Footer";
 import JobItem from "@/components/JobItem";
 import TeamMemberModal, { TeamMember } from "@/components/TeamMember";
+import CustomCursor from "@/components/CustomCursor";
+import { useCustomCursor, useCustomMouse } from "@/hook/useConditionalMouse";
+import Ian from "../../public/img_6.png";
+import Xena from "../../public/img_5.png";
+import Emile from "../../public/img_7.png";
+import Families from "../../public/img_10.png";
 
 export default function Page() {
   const teamMembers = [
@@ -13,24 +19,21 @@ export default function Page() {
       role: "Coach & CEO",
       description:
         "Creates tile jewels, devises a solution to every problem and gets to the bottom of any question until he strikes gold.",
-      imgSrc:
-        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+      imgSrc: Ian.src,
     },
     {
       name: "Xena Arisa",
       role: "Goalkeeper & Executive Assistant",
       description:
         "Designs celestial ornaments, pursues his dreams, and navigates ship and crew across the open sea with subtle assurance.",
-      imgSrc:
-        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+      imgSrc: Xena.src,
     },
     {
       name: "Emile Epaminondas",
       role: "Defender & Backend Developer",
       description:
         "Consults, designs and navigates. Steers order processing with patience and composure and keeps the ship on course.",
-      imgSrc:
-        "https://www.ueberbild.de/img/asset/YXNzZXRzL3RvbXRvbXRvbS5qcGc=?p=md-webp&s=114ac2c07ccdbe32452c6159ec096612",
+      imgSrc: Emile.src,
     },
     {
       name: "Stanlay Hounnouvi",
@@ -115,7 +118,7 @@ export default function Page() {
         "https://blog.olivierlarose.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2F7.6ae8015e.jpeg&w=2048&q=75",
     },
     {
-      title: "Finesse",
+      title: "Education",
       description:
         "Striving for excellence in execution and delivery, we ensure every project surpasses expectations with unmatched quality and precision.",
       imgSrc:
@@ -150,13 +153,31 @@ export default function Page() {
     setSelectedMember(member);
   };
 
-  // Function to handle closing the modal
   const handleCloseModal = () => {
     setSelectedMember(null);
   };
 
+  const { cursorVariant, cursorText, mouseEnter, mouseLeave } =
+    useCustomCursor();
+
+  const ref = React.useRef(null);
+
+  const { mouseXPosition, mouseYPosition } = useCustomMouse(ref);
+
   return (
-    <motion.div initial="initial" animate="animate" exit={{ opacity: 0 }}>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit={{ opacity: 0 }}
+      className="relative"
+      ref={ref}
+    >
+      <CustomCursor
+        cursorText={cursorText}
+        cursorVariant={cursorVariant}
+        mouseXPosition={mouseXPosition}
+        mouseYPosition={mouseYPosition}
+      />
       <div className="font-clash z-50 bg-base overflow-hidden">
         <section className="px-4 sm:px-6 py-10 md:py-26 font-clash my-12 md:my-48">
           <div className="mx-auto flex flex-col md:flex-row justify-between text-black">
@@ -197,10 +218,10 @@ export default function Page() {
             members—their unique personalities embody our collective spirit.
           </h2>
           <div className="flex flex-col items-center justify-center">
-            <motion.div className="w-full h-auto md:h-[70vh] flex items-center justify-center overflow-hidden m-6 md:m-12 px-4 md:px-24">
+            <motion.div className="w-full h-auto md:h-[70vh] flex items-center justify-center overflow-hidden m-6 md:m-12 px-4 md:px-48">
               <motion.img
                 style={{ scale: imageScale }}
-                src="https://niftic.com/images/internal/team_niftic_chicago.png"
+                src={Families.src}
                 className="w-full object-cover md:object-fill"
                 alt="Dynamic"
               />
@@ -300,6 +321,7 @@ export default function Page() {
         </section>
       </div>
       <TeamMemberModal member={selectedMember} onClose={handleCloseModal} />
+
       <Footer />
     </motion.div>
   );

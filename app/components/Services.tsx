@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from '@/utils/svgs';
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { EventLogo, HealthLogo, InfraLogo, WorkforceLogo } from "@/utils/svgs";
 
 interface CardProps {
   i: number;
@@ -30,7 +30,7 @@ const Card: React.FC<CardProps> = ({
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start end', 'start start'],
+    offset: ["start end", "start start"],
   });
   const scale = useTransform(progress, range, [1, targetScale]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({
           <motion.div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden">
             <motion.img
               style={{ scale: imageScale }}
-              src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
+              src="https://pbs.twimg.com/media/DmqcTDUX0AEKA3l.jpg"
               className="w-full h-full object-cover"
               alt="Dynamic"
             />
@@ -90,40 +90,40 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: 'Events',
+    title: "Events",
     description:
       "We orchestrate premier sporting events across Africa, fostering talent, unity, and global recognition. Through engaging tournaments and workshops, we aim to spotlight and elevate the continent's sporting scene.",
     svg: EventLogo,
-    url: '/services/events',
-    background: 'bg-cyan-700',
-    textColor: 'text-cyan-700',
+    url: "/services/events",
+    background: "bg-cyan-700",
+    textColor: "text-cyan-700",
   },
   {
-    title: 'Workforces',
+    title: "Academy",
     description:
-      'Our program focuses on molding young sports enthusiasts into professionals, including athletes, coaches, and trainers. Through targeted training, we empower them with the skills needed for success in and out of the arena.',
+      "Our program focuses on molding young sports enthusiasts into professionals, including athletes, coaches, and trainers. Through targeted training, we empower them with the skills needed for success in and out of the arena.",
     svg: WorkforceLogo,
-    url: '/services/workforces',
-    background: 'bg-cyan-900',
-    textColor: 'text-cyan-900',
+    url: "/services/workforces",
+    background: "bg-cyan-900",
+    textColor: "text-cyan-900",
   },
   {
-    title: 'Health',
+    title: "Health",
     description:
-      'We advance physical and mental well-being in sports by training health professionals in sports medicine, psychology, and nutrition, ensuring athletes achieve peak performance and holistic health.',
+      "We advance physical and mental well-being in sports by training health professionals in sports medicine, psychology, and nutrition, ensuring athletes achieve peak performance and holistic health.",
     svg: HealthLogo,
-    url: '/services/health',
-    background: 'bg-yellow-500',
-    textColor: 'text-yellow-500',
+    url: "/services/health",
+    background: "bg-yellow-500",
+    textColor: "text-yellow-500",
   },
   {
-    title: 'Infrastructures',
+    title: "Infrastructures",
     description:
       "Committed to elevating Africa's sporting infrastructure, we invest in modern facilities to nurture talent, host international events, and inspire community participation, setting the stage for global competitiveness.",
     svg: InfraLogo,
-    url: '/services/infrastructures',
-    background: 'bg-amber-600',
-    textColor: 'text-amber-600',
+    url: "/services/infrastructures",
+    background: "bg-amber-600",
+    textColor: "text-amber-600",
   },
 ];
 
@@ -132,7 +132,7 @@ const Services: React.FC = () => {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start start', 'end end'],
+    offset: ["start start", "end end"],
   });
 
   return (
