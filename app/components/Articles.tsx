@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion'; // Import motion if it's not already imported
-import React, { useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { motion } from "framer-motion"; // Import motion if it's not already imported
+import React, { useRef } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface ArticleSectionProps {
   onMouseEnter: any;
@@ -34,11 +35,11 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
           <motion.button
             whileHover={{
               scale: 1,
-              transition: { ease: 'easeInOut', duration: 0.5 },
-              backgroundColor: '#E9C168',
+              transition: { ease: "easeInOut", duration: 0.5 },
+              backgroundColor: "#E9C168",
             }}
             onClick={() => {
-              router.push('/news');
+              router.push("/news");
             }}
             type="button"
             className="text-white bg-primary text-xxs md:text-md focus:outline-none font-medium rounded-full border-white border-2 px-4 py-2 lg:px-12 lg:py-4 whitespace-nowrap"
@@ -55,10 +56,10 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
         >
           <div
             className="col-span-4 md:col-span-4 lg:col-span-2 row-span-2 lg:flex-shrink-0  transform translate-x-10 opacity-0 h-[250px] lg:min-h-[375px] lg:h-auto"
-            style={{ transform: 'translate(0px, 0px)', opacity: 1 }}
+            style={{ transform: "translate(0px, 0px)", opacity: 1 }}
           >
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-              <img
+              <Image
                 src="https://images.wsj.net/im-880822/?width=1278&size=1"
                 alt="Big Article Image"
                 className="w-full object-cover h-full"
@@ -75,7 +76,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                   </h4>
                   <div
                     className="h-px w-full bg-white relative"
-                    style={{ top: '-1px' }}
+                    style={{ top: "-1px" }}
                   ></div>
                 </div>
                 <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
@@ -87,7 +88,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
 
           <div className="col-span-4">
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-              <img
+              <Image
                 src="https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/ss_3pt_lavine_0.jpg"
                 alt="Small Article 1 Image"
                 className="w-full object-cover h-full"
@@ -104,7 +105,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                   </h4>
                   <div
                     className="h-px w-full bg-white relative"
-                    style={{ top: '-1px' }}
+                    style={{ top: "-1px" }}
                   ></div>
                 </div>
                 <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none sm:text-lg md:text-xl lg:text-2xl">
@@ -116,7 +117,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
 
           <div className="col-span-4 md:col-span-2">
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-              <img
+              <Image
                 src="https://thetournament.com/wp-content/uploads/2023/08/Screenshot-2023-08-01-at-5.59.00-PM.png"
                 alt="Small Article 2 Image"
                 className="w-full object-cover h-full"
@@ -133,7 +134,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                   </h4>
                   <div
                     className="h-px w-full bg-white relative"
-                    style={{ top: '-1px' }}
+                    style={{ top: "-1px" }}
                   ></div>
                 </div>
                 <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none  sm:text-lg md:text-xl lg:text-2xl">
@@ -145,7 +146,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
 
           <div className="col-span-4 md:col-span-2">
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
-              <img
+              <Image
                 src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
                 alt="Small Article 3 Image"
                 className="w-full object-cover h-full"
@@ -162,7 +163,7 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                   </h4>
                   <div
                     className="h-px w-full bg-white relative"
-                    style={{ top: '-1px' }}
+                    style={{ top: "-1px" }}
                   ></div>
                 </div>
                 <h3 className="font-bebas uppercase text-xl tracking-wide leading-6 max-w-306px lg:max-w-none lg:text-2xl sm:text-lg md:text-xl">

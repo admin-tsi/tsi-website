@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export interface TeamMember {
   name: string;
@@ -50,7 +51,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
                 Close
               </button>
               <div className="container mx-auto p-2 md:p-6">
-                <img
+                <Image
                   src={member.imgSrc}
                   alt={member.name}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"

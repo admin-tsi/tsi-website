@@ -11,6 +11,7 @@ import Ian from "../../public/img_6.png";
 import Xena from "../../public/img_5.png";
 import Emile from "../../public/img_7.png";
 import Families from "../../public/img_10.png";
+import Image from "next/image";
 
 export default function Page() {
   const teamMembers = [
@@ -290,7 +291,7 @@ export default function Page() {
                 className="space-y-2 hover:cursor-pointer transition duration-300 ease-in-out hover:scale-105"
                 onClick={() => handleOpenModal(member)}
               >
-                <img
+                <Image
                   src={member.imgSrc}
                   alt={member.name}
                   className="w-full h-5/6 object-cover"

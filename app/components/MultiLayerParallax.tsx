@@ -1,5 +1,7 @@
-import { easeIn, motion, useScroll, useTransform } from 'framer-motion';
-import React, { useRef } from 'react';
+import { easeIn, motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import Image from "next/image";
+
 type MultiLayerParallaxProps = {
   mouseEnter: React.MouseEventHandler<HTMLDivElement>;
   mouseLeave: React.MouseEventHandler<HTMLDivElement>;
@@ -12,13 +14,13 @@ export default function MultiLayerParallax({
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'], {
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"], {
     clamp: false,
     ease: easeIn,
   });
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <div
@@ -34,7 +36,7 @@ export default function MultiLayerParallax({
         <h3 className="uppercase text-3xl md:text-7xl">Let&apos;s</h3>
         <div className="flex justify-center">
           <h3 className="uppercase text-3xl md:text-7xl">Build</h3>
-          <img
+          <Image
             src="https://assets-global.website-files.com/642402ce3901ac9095690c17/64f9cf621abdf9988819970c_img_1432432432532.png"
             alt=""
             className="rounded-full w-14 h-8 md:w-32 md:h-20 mx-4"
@@ -48,8 +50,8 @@ export default function MultiLayerParallax({
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(/img.png)`,
-          backgroundPosition: 'bottom',
-          backgroundSize: 'cover',
+          backgroundPosition: "bottom",
+          backgroundSize: "cover",
           y: backgroundY,
         }}
       />

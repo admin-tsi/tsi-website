@@ -1,14 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Page: React.FC = () => {
   return (
     <motion.div initial="initial" animate="animate" exit={{ opacity: 0 }}>
       <section className="bg-primary text-white py-6 font-clash pt-20 lg:pt-44 w-full min-h-screen flex flex-col lg:flex-row">
         <div className="px-4">
-          <h1 className="py-10 text-4xl lg:text-8xl font-bold">LET'S TALK.</h1>
+          <h1 className="py-10 text-4xl lg:text-8xl font-bold">
+            LET`&apos;`S TALK.
+          </h1>
           <h1 className="text-slate-300 text-xs uppercase mb-4">
             Send us an email
           </h1>
@@ -24,8 +26,8 @@ const Page: React.FC = () => {
                 className="px-2 sm:px-4 py-1 sm:py-2 rounded-full border text-center flex items-center justify-center min-w-[60px] sm:min-w-[120px] h-8 sm:h-10"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.facebook.com/people/Tailoring-Sports-Investments/61554677080597/?mibextid=%22%22">
@@ -36,8 +38,8 @@ const Page: React.FC = () => {
                 className="px-2 sm:px-4 py-1 sm:py-2 rounded-full border text-center flex items-center justify-center min-w-[60px] sm:min-w-[120px] h-8 sm:h-10"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.instagram.com/tailoringsports">
@@ -48,8 +50,8 @@ const Page: React.FC = () => {
                 className="px-2 sm:px-4 py-1 sm:py-2 rounded-full border text-center flex items-center justify-center min-w-[60px] sm:min-w-[120px] h-8 sm:h-10"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 X/Twitter
@@ -58,8 +60,8 @@ const Page: React.FC = () => {
                 className="px-2 sm:px-4 py-1 sm:py-2 rounded-full border text-center flex items-center justify-center min-w-[60px] sm:min-w-[120px] h-8 sm:h-10"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.linkedin.com/company/tailoring-sports-investments/">
