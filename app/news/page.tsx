@@ -35,6 +35,7 @@ const NewsItem: React.FC<NewsArticle> = ({
         src={imageUrl}
         alt={title}
         className="w-full h-64 object-cover rounded-t-lg"
+        fill
       />
       <div className="p-4">
         <div className="flex space-x-2">
@@ -229,6 +230,7 @@ const NewsPage: React.FC = () => {
               src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
               alt="Ian Mahinmi"
               className="w-screen h-full object-cover object-center"
+              fill
             />
 
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4 bg-primary opacity-80">

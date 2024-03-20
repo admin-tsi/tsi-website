@@ -104,6 +104,7 @@ const Page: React.FC = () => {
             src={IanTradi.src}
             alt="Ian Mahinmi"
             className="w-screen h-full object-cover object-center" // Adjust image to cover the new height
+            fill
           />
 
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4">
@@ -169,6 +170,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, fadeInUp }) => {
         src={event.imgs[currentImageIndex]}
         alt={event.title}
         className="w-full h-full object-cover"
+        fill
       />
       {event.imgs.length > 1 && (
         <div className="absolute inset-0 flex justify-between items-center px-4 text-white">

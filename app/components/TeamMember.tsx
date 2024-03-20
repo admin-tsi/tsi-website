@@ -55,6 +55,7 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
                   src={member.imgSrc}
                   alt={member.name}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                  fill
                 />
                 <h2 className="text-2xl font-semibold mb-2 text-center font-cinzel">
                   {member.name}
