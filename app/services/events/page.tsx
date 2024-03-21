@@ -96,52 +96,53 @@ const Page: React.FC = () => {
       exit={{ opacity: 0 }}
       className="font-cinzel"
     >
-      <Header />
-      {/* Hero Section */}
-      <section className="relative h-[50vh]">
-        <div className=" h-full">
-          <Image
-            src={IanTradi.src}
-            alt="Ian Mahinmi"
-            className="w-screen h-full object-cover object-center" // Adjust image to cover the new height
-            fill
-          />
+      <div className="font-clash z-50 bg-base overflow-hidden">
+        <Header />
+        <section className="relative bg-base h-[50vh]">
+          <div className=" h-full">
+            <Image
+              src={IanTradi.src}
+              alt="Ian Mahinmi"
+              className="w-screen h-full object-cover object-center" // Adjust image to cover the new height
+              fill
+            />
 
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold">TSE</h1>
-              <p className="text-xl md:text-2xl font-light mt-4">
-                WE ORGANIZE EVENTS TO IMPROVE AND PROMOTE SPORT IN AFRICA.
-              </p>
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-4">
+              <div className="text-center text-white">
+                <h1 className="text-4xl md:text-6xl font-bold">TSE</h1>
+                <p className="text-xl md:text-2xl font-light mt-4">
+                  WE ORGANIZE EVENTS TO IMPROVE AND PROMOTE SPORT IN AFRICA.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="i-am-foundation-section">
-        <div className="container mx-auto py-12 md:py-24">
-          <motion.div variants={fadeInUp}>
-            <p className="mt-4">
-              Lorem ipsum s simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry`&apos;`s standard
-              dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book. It
-              has survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-      <section className="event-section py-12">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          {imageData.map((event, index) => (
-            <EventCard key={index} event={event} fadeInUp={fadeInUp} />
-          ))}
-        </div>
-      </section>
+        </section>
+        <section className="i-am-foundation-section">
+          <div className="container mx-auto py-12 md:py-24">
+            <motion.div variants={fadeInUp}>
+              <p className="mt-4">
+                Lorem ipsum s simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry`&apos;`s standard
+                dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book. It
+                has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+        <section className="event-section py-12">
+          <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            {imageData.map((event, index) => (
+              <EventCard key={index} event={event} fadeInUp={fadeInUp} />
+            ))}
+          </div>
+        </section>
+      </div>
 
       <Footer />
     </motion.div>

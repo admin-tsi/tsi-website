@@ -1,13 +1,15 @@
-'use client';
-import React from 'react';
-import { MobileLogo } from '@/utils/svgs';
-import { motion } from 'framer-motion';
+"use client";
+import React from "react";
+import { MobileLogo } from "@/utils/svgs";
+import { motion } from "framer-motion";
 
 const Footer: React.FC = () => {
+  const ref = React.useRef(null);
   return (
     <footer
       className="bg-primary text-white py-6 font-clash sticky bottom-0 -z-10"
       id="contact"
+      ref={ref}
     >
       <div className="mx-auto px-4 flex flex-col">
         <div className="flex flex-col">
@@ -41,8 +43,8 @@ const Footer: React.FC = () => {
                 className="px-4 py-2 rounded-full border my-1"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.facebook.com/people/Tailoring-Sports-Investments/61554677080597/?mibextid=%22%22">
@@ -53,8 +55,8 @@ const Footer: React.FC = () => {
                 className="px-4 py-2 rounded-full border my-1"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.instagram.com/tailoringsports">
@@ -65,8 +67,8 @@ const Footer: React.FC = () => {
                 className="px-4 py-2 rounded-full border my-1 text-center"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 X/Twitter
@@ -75,8 +77,8 @@ const Footer: React.FC = () => {
                 className="px-4 py-2 rounded-full border mb-6 text-center"
                 whileHover={{
                   scale: 1.1,
-                  transition: { ease: 'easeInOut', duration: 0.5 },
-                  backgroundColor: '#E9C168',
+                  transition: { ease: "easeInOut", duration: 0.5 },
+                  backgroundColor: "#E9C168",
                 }}
               >
                 <a href="https://www.linkedin.com/company/tailoring-sports-investments/">

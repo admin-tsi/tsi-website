@@ -9,7 +9,7 @@ const Page: React.FC = () => {
       <section className="bg-primary text-white py-6 font-clash pt-20 lg:pt-44 w-full min-h-screen flex flex-col lg:flex-row">
         <div className="px-4">
           <h1 className="py-10 text-4xl lg:text-8xl font-bold">
-            LET`&apos;`S TALK.
+            LET&apos;S TALK.
           </h1>
           <h1 className="text-slate-300 text-xs uppercase mb-4">
             Send us an email

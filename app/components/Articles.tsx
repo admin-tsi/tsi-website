@@ -60,13 +60,12 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
           >
             <div className="h-full transform transition duration-300 ease-in-out hover:scale-105">
               <div>
-              <Image
-                src="https://images.wsj.net/im-880822/?width=1278&size=1"
-                alt="Big Article Image"
-                className="w-full object-cover h-full"
-                fill
-              />
-              
+                <Image
+                  src="https://images.wsj.net/im-880822/?width=1278&size=1"
+                  alt="Big Article Image"
+                  className="w-full object-cover h-full"
+                  fill
+                />
               </div>
               <motion.div
                 className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
@@ -96,7 +95,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 src="https://cdn.nba.com/teams/legacy/www.nba.com/bulls/sites/bulls/files/ss_3pt_lavine_0.jpg"
                 alt="Small Article 1 Image"
                 className="w-full object-cover h-full"
-                fill
+                width={500}
+                height={500}
               />
               <motion.div
                 className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
@@ -126,7 +126,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 src="https://thetournament.com/wp-content/uploads/2023/08/Screenshot-2023-08-01-at-5.59.00-PM.png"
                 alt="Small Article 2 Image"
                 className="w-full object-cover h-full"
-                fill
+                width={500}
+                height={500}
               />
               <motion.div
                 className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"
@@ -156,7 +157,8 @@ const ArticleSection: React.FC<ArticleSectionProps> = ({
                 src="https://thetournament.com/wp-content/uploads/2023/08/DSC03768-scaled.jpg"
                 alt="Small Article 3 Image"
                 className="w-full object-cover h-full"
-                fill
+                width={500}
+                height={500}
               />
               <motion.div
                 className="bg-secondary absolute inset-0 origin-top h-full w-full z-50"

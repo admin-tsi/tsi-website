@@ -35,7 +35,8 @@ const NewsItem: React.FC<NewsArticle> = ({
         src={imageUrl}
         alt={title}
         className="w-full h-64 object-cover rounded-t-lg"
-        fill
+        width={500}
+        height={300}
       />
       <div className="p-4">
         <div className="flex space-x-2">

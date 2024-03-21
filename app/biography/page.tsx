@@ -103,23 +103,26 @@ export default function Page() {
                       src={Benin.src}
                       alt="Benin"
                       className="object-contain  h-full"
-                      fill
+                      width={50}
+                      height={100}
                     />
                   </div>
-                  <div className="w-22 h-16 overflow-hidden">
+                  <div className="w-20 h-16 overflow-hidden">
                     <Image
                       src={Jamaica.src}
                       alt="Jamaica"
                       className="object-contain h-full"
-                      fill
+                      width={120}
+                      height={100}
                     />
                   </div>
-                  <div className="w-18 h-20 overflow-hidden">
+                  <div className="w-16 h-20 overflow-hidden">
                     <Image
                       src={France.src}
                       alt="France"
                       className="object-contain  h-full"
-                      fill
+                      width={100}
+                      height={100}
                     />
                   </div>
                   {/*         <div className="w-22 h-16 overflow-hidden">
@@ -138,7 +141,8 @@ export default function Page() {
                 src={IanTradi.src}
                 alt="Ian Mahinmi"
                 className="w-full h-auto object-cover rounded-xl"
-                fill
+                width={500}
+                height={500}
               />
             </div>
           </div>
@@ -262,7 +266,8 @@ export default function Page() {
                       alt={`Gallery Image ${index + 1}`}
                       className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
                       style={{ aspectRatio: "1 / 1" }}
-                      fill
+                      width={500}
+                      height={500}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
                       <p className="text-white text-center">

@@ -74,12 +74,11 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div ref={ref}>
       <motion.div
         animate={controls}
         transition={{ duration: 1, ease: "easeInOut" }}
         className="min-h-screen relative bg-base"
-        ref={ref}
       >
         <CustomCursor
           cursorText={cursorText}
@@ -216,7 +215,7 @@ export default function Page() {
                     onMouseEnter={() => mouseEnter("", "image")}
                     onMouseLeave={() => mouseLeave("", "default")}
                   >
-                    <Link href="/biography/page">Ian Mahinmi</Link>
+                    <Link href="/biography">Ian Mahinmi</Link>
                   </span>
                   , a seasoned entrepreneur and athlete with over 20 years of
                   experience in NBA and the FIBA. Our mission at TSI is to
