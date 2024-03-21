@@ -40,7 +40,8 @@ export default function MultiLayerParallax({
             src="https://assets-global.website-files.com/642402ce3901ac9095690c17/64f9cf621abdf9988819970c_img_1432432432532.png"
             alt=""
             className="rounded-full w-14 h-8 md:w-32 md:h-20 mx-4"
-            fill
+            width={300}
+            height={100}
           />
           <h3 className="uppercase text-3xl md:text-7xl">the</h3>
         </div>
