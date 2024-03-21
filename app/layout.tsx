@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import SmoothScrolling from "@/components/SmoothScroll";
+import GoogleAnalytics  from 'next/script';
 
 const cinzelFont = Cinzel({
   variable: "--cinzel-font",
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className={`${clashDisplayFont.variable} ${cinzelFont.variable}`}>
         <Header />
         <SmoothScrolling>{children}</SmoothScrolling>
+        <GoogleAnalytics id="G-BVECK6TV5R" />
       </body>
     </html>
   );

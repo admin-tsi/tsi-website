@@ -295,6 +295,8 @@ export default function Page() {
                   src={member.imgSrc}
                   alt={member.name}
                   className="w-full h-5/6 object-cover"
+                  width={500}
+                  height={100}
                 />
                 <p className="text-sm font-medium uppercase font-cinzel">
                   {member.name}
